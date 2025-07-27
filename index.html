@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HyperionRP - Serveur Minecraft RP</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="banniere.png" alt="Bannière HyperionRP" class="banner" />
+    <h1>HyperionRP</h1>
+    <p>Plonge dans un monde où chaque joueur écrit sa propre histoire — bienvenue sur HyperionRP</p>
+    <div class="buttons">
+      <button onclick="copyIP()">📋 Copier l’IP</button>
+      <a href="https://discord.gg/fgDnGahS" target="_blank"><button>💬 Rejoindre le Discord</button></a>
+    </div>
+  </header>
+
+  <section class="staff-section">
+    <h2>👑 L'Équipe HyperionRP</h2>
+    <div class="staff-cards">
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/mz_dragon" alt="mz_dragon">
+        <h3>mz_dragon <span class="badge">Gérant Staff</span></h3>
+        <p>Responsable de la gestion et de l'organisation du serveur.</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/tatane" alt="tatane">
+        <h3>tatane <span class="badge">Aide Développeur</span></h3>
+        <p>Assiste dans le développement et les correctifs techniques.</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/le%20chat%20fumeur" alt="le chat fumeur">
+        <h3>le chat fumeur <span class="badge">Aide Développeur</span></h3>
+        <p>Apporte son soutien dans la configuration et les scripts RP.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="boutique">
+    <h2>🌟 Boutique HyperionRP</h2>
+    <div class="produits">
+      <div class="carte-produit">
+        <h3>Grade VIP</h3>
+        <p>Accès à des privilèges exclusifs, salon Discord privé, effets cosmiques.</p>
+        <span class="prix">4.99€</span>
+        <a href="#" class="bouton-achat">Acheter</a>
+      </div>
+      <div class="carte-produit">
+        <h3>Kit de Départ</h3>
+        <p>Armes de base, nourriture, outils utiles pour bien commencer.</p>
+        <span class="prix">2.99€</span>
+        <a href="#" class="bouton-achat">Acheter</a>
+      </div>
+      <div class="carte-produit">
+        <h3>Argent Virtuel</h3>
+        <p>Ajoute 10 000€ à ton compte en jeu.</p>
+        <span class="prix">1.99€</span>
+        <a href="#" class="bouton-achat">Acheter</a>
+      </div>
+      <div class="carte-produit">
+        <h3>Don Libre</h3>
+        <p>Soutiens le serveur à hauteur de ton choix.</p>
+        <span class="prix">✨ Montant libre</span>
+        <a href="#" class="bouton-achat">Faire un don</a>
+      </div>
+    </div>
+    <p class="avertissement">⚠️ Avertissement : les dons libres ne sont pas remboursables.</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 HyperionRP. Tous droits réservés.</p>
+  </footer>
+
+  <script>
+    function copyIP() {
+      navigator.clipboard.writeText("hyperionrp.aternos.me");
+      alert("IP copiée : hyperionrp.aternos.me");
+    }
+  </script>
+</body>
+</html>
