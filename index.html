@@ -14,6 +14,7 @@
     <a href="#staff">👑 Staff</a>
     <a href="#boutique">🛍️ Boutique</a>
     <a href="#recrutement">📋 Recrutement</a>
+    <a href="panier.html" class="btn-panier">🛒 Voir le panier</a>
   </nav>
 
   <header>
@@ -48,7 +49,7 @@
     </div>
   </section>
 
-  <!-- Section Boutique avec panier avancé -->
+  <!-- Section Boutique -->
   <section id="boutique" class="boutique">
     <h2>🌟 Boutique HyperionRP</h2>
     <div class="produits">
@@ -79,24 +80,6 @@
     </div>
     <p class="avertissement">⚠️ Avertissement : les dons libres ne sont pas remboursables.</p>
   </section>
-
-  <!-- Panier flottant -->
-  <div id="panier" class="panier">
-    <span id="panier-count">0</span> article(s) – <span id="panier-total">0.00€</span>
-    <button onclick="afficherPanier()">Voir le panier</button>
-  </div>
-
-  <!-- Modale panier avancé -->
-  <div id="modal-panier" class="modal" style="display:none;">
-    <div class="modal-content">
-      <h3>🛒 Mon panier</h3>
-      <ul id="liste-panier"></ul>
-      <p>Total : <span id="modal-total">0.00€</span></p>
-      <button onclick="validerPanier()">Valider</button>
-      <button onclick="fermerPanier()">Fermer</button>
-      <p id="confirmation" style="color:#27ae60;display:none;">Merci pour votre commande !</p>
-    </div>
-  </div>
 
   <!-- Section Recrutement -->
   <section id="recrutement" class="recrutement">
@@ -129,8 +112,8 @@
       alert("IP copiée : hyperionrp.aternos.me");
     }
 
-    // Panier avancé
-    let panier = [];
+    // Panier avec stockage local
+    let panier = JSON.parse(localStorage.getItem('panier') || '[]');
 
     function ajouterAuPanier(nom, prix, isDonLibre) {
       let quantite = 1;
@@ -141,7 +124,6 @@
         if (isNaN(montant) || montant <= 0) return;
         prix = montant;
       }
-      // Cherche si le produit existe déjà (hors Don Libre)
       let index = panier.findIndex(item => item.nom === nom && (!isDonLibre));
       if (index !== -1 && !isDonLibre) {
         panier[index].quantite += 1;
@@ -153,52 +135,8 @@
 
     function majPanier() {
       let count = panier.reduce((sum, item) => sum + item.quantite, 0);
-      document.getElementById('panier-count').innerText = count;
-      let total = panier.reduce((sum, item) => sum + item.prix * item.quantite, 0);
-      document.getElementById('panier-total').innerText = total.toFixed(2) + "€";
-    }
-
-    function afficherPanier() {
-      document.getElementById('modal-panier').style.display = 'flex';
-      let liste = document.getElementById('liste-panier');
-      liste.innerHTML = '';
-      panier.forEach((item, i) => {
-        let li = document.createElement('li');
-        li.innerHTML = `
-          <strong>${item.nom}</strong>
-          – <input type="number" min="1" value="${item.quantite}" style="width:40px;" onchange="changerQuantite(${i}, this.value)">
-          × ${item.prix.toFixed(2)}€
-          <button onclick="supprimerProduit(${i})">Supprimer</button>
-        `;
-        liste.appendChild(li);
-      });
-      document.getElementById('modal-total').innerText = panier.reduce((sum, item) => sum + item.prix * item.quantite, 0).toFixed(2) + "€";
-      document.getElementById('confirmation').style.display = "none";
-    }
-
-    function fermerPanier() {
-      document.getElementById('modal-panier').style.display = 'none';
-    }
-
-    function changerQuantite(index, val) {
-      val = parseInt(val);
-      if (isNaN(val) || val < 1) val = 1;
-      panier[index].quantite = val;
-      majPanier();
-      afficherPanier();
-    }
-
-    function supprimerProduit(index) {
-      panier.splice(index, 1);
-      majPanier();
-      afficherPanier();
-    }
-
-    function validerPanier() {
-      document.getElementById('confirmation').style.display = "block";
-      panier = [];
-      majPanier();
-      setTimeout(fermerPanier, 1500);
+      // Optionnel : afficher le nombre d'articles dans le menu ou ailleurs
+      localStorage.setItem('panier', JSON.stringify(panier));
     }
   </script>
 </body>
