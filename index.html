@@ -48,7 +48,7 @@
     </div>
   </section>
 
-  <!-- Section Boutique avec panier -->
+  <!-- Section Boutique avec panier avancé -->
   <section id="boutique" class="boutique">
     <h2>🌟 Boutique HyperionRP</h2>
     <div class="produits">
@@ -56,25 +56,25 @@
         <h3>Grade VIP</h3>
         <p>Accès à des privilèges exclusifs, salon Discord privé, effets cosmiques.</p>
         <span class="prix">4.99€</span>
-        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Grade VIP', 4.99); return false;">Ajouter au panier</a>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Grade VIP', 4.99, false); return false;">Ajouter au panier</a>
       </div>
       <div class="carte-produit">
         <h3>Kit de départ</h3>
         <p>Tout ce qu’il faut pour bien commencer l’aventure RP !</p>
         <span class="prix">2.50€</span>
-        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Kit de départ', 2.50); return false;">Ajouter au panier</a>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Kit de départ', 2.50, false); return false;">Ajouter au panier</a>
       </div>
       <div class="carte-produit">
         <h3>Achat d’argent virtuel</h3>
         <p>Obtiens de la monnaie en jeu pour acheter des items exclusifs.</p>
         <span class="prix">5.00€</span>
-        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Achat d’argent virtuel', 5.00); return false;">Ajouter au panier</a>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Achat d’argent virtuel', 5.00, false); return false;">Ajouter au panier</a>
       </div>
       <div class="carte-produit">
         <h3>Don Libre</h3>
         <p>Soutiens le serveur et la communauté !</p>
         <span class="prix">Montant libre</span>
-        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Don Libre', 0); return false;">Ajouter au panier</a>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Don Libre', 0, true); return false;">Ajouter au panier</a>
       </div>
     </div>
     <p class="avertissement">⚠️ Avertissement : les dons libres ne sont pas remboursables.</p>
@@ -86,7 +86,7 @@
     <button onclick="afficherPanier()">Voir le panier</button>
   </div>
 
-  <!-- Modale panier -->
+  <!-- Modale panier avancé -->
   <div id="modal-panier" class="modal" style="display:none;">
     <div class="modal-content">
       <h3>🛒 Mon panier</h3>
@@ -94,6 +94,7 @@
       <p>Total : <span id="modal-total">0.00€</span></p>
       <button onclick="validerPanier()">Valider</button>
       <button onclick="fermerPanier()">Fermer</button>
+      <p id="confirmation" style="color:#27ae60;display:none;">Merci pour votre commande !</p>
     </div>
   </div>
 
@@ -128,17 +129,32 @@
       alert("IP copiée : hyperionrp.aternos.me");
     }
 
-    // Système de panier
+    // Panier avancé
     let panier = [];
 
-    function ajouterAuPanier(nom, prix) {
-      panier.push({ nom, prix });
+    function ajouterAuPanier(nom, prix, isDonLibre) {
+      let quantite = 1;
+      if (isDonLibre) {
+        let montant = prompt("Quel montant souhaitez-vous donner ? (en €)", "5");
+        if (!montant) return;
+        montant = parseFloat(montant.replace(',', '.'));
+        if (isNaN(montant) || montant <= 0) return;
+        prix = montant;
+      }
+      // Cherche si le produit existe déjà (hors Don Libre)
+      let index = panier.findIndex(item => item.nom === nom && (!isDonLibre));
+      if (index !== -1 && !isDonLibre) {
+        panier[index].quantite += 1;
+      } else {
+        panier.push({ nom, prix, quantite, isDonLibre });
+      }
       majPanier();
     }
 
     function majPanier() {
-      document.getElementById('panier-count').innerText = panier.length;
-      let total = panier.reduce((sum, item) => sum + item.prix, 0);
+      let count = panier.reduce((sum, item) => sum + item.quantite, 0);
+      document.getElementById('panier-count').innerText = count;
+      let total = panier.reduce((sum, item) => sum + item.prix * item.quantite, 0);
       document.getElementById('panier-total').innerText = total.toFixed(2) + "€";
     }
 
@@ -148,25 +164,41 @@
       liste.innerHTML = '';
       panier.forEach((item, i) => {
         let li = document.createElement('li');
-        li.innerText = item.nom + (item.prix > 0 ? " – " + item.prix.toFixed(2) + "€" : " – Montant à définir");
-        let btn = document.createElement('button');
-        btn.innerText = "Supprimer";
-        btn.onclick = () => { panier.splice(i,1); majPanier(); afficherPanier(); };
-        li.appendChild(btn);
+        li.innerHTML = `
+          <strong>${item.nom}</strong>
+          – <input type="number" min="1" value="${item.quantite}" style="width:40px;" onchange="changerQuantite(${i}, this.value)">
+          × ${item.prix.toFixed(2)}€
+          <button onclick="supprimerProduit(${i})">Supprimer</button>
+        `;
         liste.appendChild(li);
       });
-      document.getElementById('modal-total').innerText = panier.reduce((sum, item) => sum + item.prix, 0).toFixed(2) + "€";
+      document.getElementById('modal-total').innerText = panier.reduce((sum, item) => sum + item.prix * item.quantite, 0).toFixed(2) + "€";
+      document.getElementById('confirmation').style.display = "none";
     }
 
     function fermerPanier() {
       document.getElementById('modal-panier').style.display = 'none';
     }
 
+    function changerQuantite(index, val) {
+      val = parseInt(val);
+      if (isNaN(val) || val < 1) val = 1;
+      panier[index].quantite = val;
+      majPanier();
+      afficherPanier();
+    }
+
+    function supprimerProduit(index) {
+      panier.splice(index, 1);
+      majPanier();
+      afficherPanier();
+    }
+
     function validerPanier() {
-      alert("Merci pour votre commande ! (simulation)");
+      document.getElementById('confirmation').style.display = "block";
       panier = [];
       majPanier();
-      fermerPanier();
+      setTimeout(fermerPanier, 1500);
     }
   </script>
 </body>
