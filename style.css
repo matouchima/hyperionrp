@@ -1,105 +1,3 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #0f0f0f;
-  color: #f0f0f0;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-.nav-fixe {
-  position: fixed;
-  top: 0; left: 0; width: 100vw;
-  background: rgba(20,20,20,0.97);
-  display: flex;
-  justify-content: center;
-  gap: 2em;
-  z-index: 100;
-  padding: 1em 0;
-  box-shadow: 0 2px 8px #0008;
-}
-.nav-fixe a {
-  color: #27ae60;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.1em;
-  transition: color 0.2s;
-}
-.nav-fixe a:hover {
-  color: #fff;
-  text-shadow: 0 0 8px #27ae60;
-}
-body { padding-top: 70px; }
-header {
-  padding: 2em;
-  background-color: #1a1a1a;
-}
-.banner {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-bottom: 4px solid #27ae60;
-}
-.tagline { font-size: 1.2rem; margin-bottom: 1em; color: #ccc; }
-.buttons button {
-  margin: 10px;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1em;
-  background: #27ae60;
-  color: white;
-  cursor: pointer;
-}
-.staff-section { padding: 2em 1em; background-color: #121212; }
-.staff-section h2 { margin-bottom: 1em; }
-.staff-cards {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 2em;
-}
-.staff-card {
-  background: #1f1f1f;
-  border-radius: 12px;
-  padding: 1em;
-  width: 220px;
-  box-shadow: 0 0 10px rgba(0, 255, 128, 0.2);
-}
-.staff-card img { width: 100px; height: 100px; border-radius: 50%; }
-.badge {
-  display: inline-block;
-  background: #27ae60;
-  color: white;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.75em;
-}
-.boutique { padding: 2em 1em; background: #181818; }
-.boutique h2 { margin-bottom: 1em; }
-.produits {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 2em;
-}
-.carte-produit {
-  background: #232323;
-  border-radius: 12px;
-  padding: 1.5em;
-  width: 220px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  display: flex; flex-direction: column; align-items: center;
-}
-.carte-produit h3 { margin-bottom: 0.5em; }
-.carte-produit .prix { font-weight: bold; color: #27ae60; margin-bottom: 0.5em; display: block; }
-.bouton-achat {
-  background: #27ae60;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 0.7em 1.2em;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 0.5em;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-.bouton-achat:hover { background: #219150; }
-.avertissement { color: #e67e22; margin-top: 2em; }
 .panier {
   position: fixed;
   top: 20px;
@@ -125,54 +23,12 @@ header {
   background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 2000;
 }
 .modal-content {
-  background: #1a1a1a; color: #fff; padding: 2em; border-radius: 12px; min-width: 300px;
+  background: #1a1a1a; color: #fff; padding: 2em; border-radius: 12px; min-width: 320px;
 }
 .modal-content ul { list-style: none; padding: 0; }
 .modal-content li { margin-bottom: 1em; }
 .modal-content button { margin-left: 10px; }
-.recrutement {
-  background-color: #1a1a1a;
-  padding: 2em 1em;
-  margin-top: 2em;
-  border-top: 1px solid #333;
+.modal-content input[type="number"] {
+  background: #222; color: #fff; border: 1px solid #27ae60; border-radius: 4px; padding: 2px 6px; margin: 0 5px;
 }
-.recrutement h2 { margin-bottom: 1em; }
-.formulaire {
-  max-width: 500px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-.formulaire label {
-  display: flex;
-  flex-direction: column;
-  font-weight: bold;
-  text-align: left;
-}
-.formulaire input, .formulaire select, .formulaire textarea {
-  padding: 0.7em;
-  border-radius: 8px;
-  border: none;
-  margin-top: 0.5em;
-  background: #2e2e2e;
-  color: white;
-}
-.formulaire button {
-  background: #27ae60;
-  color: white;
-  padding: 0.8em;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.formulaire button:hover { background: #219150; }
-footer {
-  background-color: #111;
-  padding: 1em;
-  font-size: 0.9em;
-  border-top: 1px solid #333;
-  color: #888;
-}
+#confirmation { margin-top: 1em; font-weight: bold; }
