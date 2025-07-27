@@ -2,30 +2,31 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HyperionRP - Serveur Minecraft RP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HyperionRP - Serveur Minecraft</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <nav class="navbar">
-    <ul>
-      <li><a href="#accueil">Accueil</a></li>
-      <li><a href="#staff">Staff</a></li>
-      <li><a href="#boutique">Boutique</a></li>
-      <li><a href="#recrutement">Recrutement</a></li>
-    </ul>
+<body id="accueil">
+
+  <!-- Menu de navigation fixe -->
+  <nav class="nav-fixe">
+    <a href="#accueil">🏠 Accueil</a>
+    <a href="#staff">👑 Staff</a>
+    <a href="#boutique">🛍️ Boutique</a>
+    <a href="#recrutement">📋 Recrutement</a>
   </nav>
 
-  <header id="accueil">
+  <header>
     <img src="banniere.png" alt="Bannière HyperionRP" class="banner" />
     <h1>HyperionRP</h1>
-    <p>Plonge dans un monde où chaque joueur écrit sa propre histoire — bienvenue sur HyperionRP</p>
+    <p class="tagline">Plonge dans un monde où chaque joueur écrit sa propre histoire — bienvenue sur HyperionRP</p>
     <div class="buttons">
       <button onclick="copyIP()">📋 Copier l’IP</button>
       <a href="https://discord.gg/fgDnGahS" target="_blank"><button>💬 Rejoindre le Discord</button></a>
     </div>
   </header>
 
+  <!-- Section Staff -->
   <section id="staff" class="staff-section">
     <h2>👑 L'Équipe HyperionRP</h2>
     <div class="staff-cards">
@@ -47,6 +48,7 @@
     </div>
   </section>
 
+  <!-- Section Boutique avec panier -->
   <section id="boutique" class="boutique">
     <h2>🌟 Boutique HyperionRP</h2>
     <div class="produits">
@@ -54,31 +56,67 @@
         <h3>Grade VIP</h3>
         <p>Accès à des privilèges exclusifs, salon Discord privé, effets cosmiques.</p>
         <span class="prix">4.99€</span>
-        <a href="#" class="bouton-achat">Acheter</a>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Grade VIP', 4.99); return false;">Ajouter au panier</a>
       </div>
       <div class="carte-produit">
-        <h3>Kit de Départ</h3>
-        <p>Armes de base, nourriture, outils utiles pour bien commencer.</p>
-        <span class="prix">2.99€</span>
-        <a href="#" class="bouton-achat">Acheter</a>
+        <h3>Kit de départ</h3>
+        <p>Tout ce qu’il faut pour bien commencer l’aventure RP !</p>
+        <span class="prix">2.50€</span>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Kit de départ', 2.50); return false;">Ajouter au panier</a>
       </div>
       <div class="carte-produit">
-        <h3>Argent Virtuel</h3>
-        <p>Ajoute 180 000€ à ton compte en jeu.</p>
-        <span class="prix">4.99€</span>
-        <a href="#" class="bouton-achat">Acheter</a>
+        <h3>Achat d’argent virtuel</h3>
+        <p>Obtiens de la monnaie en jeu pour acheter des items exclusifs.</p>
+        <span class="prix">5.00€</span>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Achat d’argent virtuel', 5.00); return false;">Ajouter au panier</a>
       </div>
       <div class="carte-produit">
         <h3>Don Libre</h3>
-        <p>Soutiens le serveur à hauteur de ton choix.</p>
-        <span class="prix">✨ Montant libre</span>
-        <a href="#" class="bouton-achat">Faire un don</a>
+        <p>Soutiens le serveur et la communauté !</p>
+        <span class="prix">Montant libre</span>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Don Libre', 0); return false;">Ajouter au panier</a>
       </div>
     </div>
     <p class="avertissement">⚠️ Avertissement : les dons libres ne sont pas remboursables.</p>
   </section>
 
-  <section id="recrutement" class="recrutement"><h2>📋 Recrutement</h2><p>Section à venir...</p></section>
+  <!-- Panier flottant -->
+  <div id="panier" class="panier">
+    <span id="panier-count">0</span> article(s) – <span id="panier-total">0.00€</span>
+    <button onclick="afficherPanier()">Voir le panier</button>
+  </div>
+
+  <!-- Modale panier -->
+  <div id="modal-panier" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h3>🛒 Mon panier</h3>
+      <ul id="liste-panier"></ul>
+      <p>Total : <span id="modal-total">0.00€</span></p>
+      <button onclick="validerPanier()">Valider</button>
+      <button onclick="fermerPanier()">Fermer</button>
+    </div>
+  </div>
+
+  <!-- Section Recrutement -->
+  <section id="recrutement" class="recrutement">
+    <h2>📋 Formulaire de Recrutement</h2>
+    <form action="https://formspree.io/f/yourID" method="POST" class="formulaire">
+      <label>Nom Minecraft <input type="text" name="pseudo" required> </label>
+      <label>Âge <input type="number" name="age" required> </label>
+      <label>Poste souhaité
+        <select name="poste" required>
+          <option value="modérateur">Modérateur</option>
+          <option value="animateur">Animateur</option>
+          <option value="développeur">Développeur</option>
+          <option value="autre">Autre</option>
+        </select>
+      </label>
+      <label>Pourquoi veux-tu rejoindre le staff ?
+        <textarea name="motivation" rows="4" required></textarea>
+      </label>
+      <button type="submit">Envoyer la candidature</button>
+    </form>
+  </section>
 
   <footer>
     <p>&copy; 2025 HyperionRP. Tous droits réservés.</p>
@@ -88,6 +126,47 @@
     function copyIP() {
       navigator.clipboard.writeText("hyperionrp.aternos.me");
       alert("IP copiée : hyperionrp.aternos.me");
+    }
+
+    // Système de panier
+    let panier = [];
+
+    function ajouterAuPanier(nom, prix) {
+      panier.push({ nom, prix });
+      majPanier();
+    }
+
+    function majPanier() {
+      document.getElementById('panier-count').innerText = panier.length;
+      let total = panier.reduce((sum, item) => sum + item.prix, 0);
+      document.getElementById('panier-total').innerText = total.toFixed(2) + "€";
+    }
+
+    function afficherPanier() {
+      document.getElementById('modal-panier').style.display = 'flex';
+      let liste = document.getElementById('liste-panier');
+      liste.innerHTML = '';
+      panier.forEach((item, i) => {
+        let li = document.createElement('li');
+        li.innerText = item.nom + (item.prix > 0 ? " – " + item.prix.toFixed(2) + "€" : " – Montant à définir");
+        let btn = document.createElement('button');
+        btn.innerText = "Supprimer";
+        btn.onclick = () => { panier.splice(i,1); majPanier(); afficherPanier(); };
+        li.appendChild(btn);
+        liste.appendChild(li);
+      });
+      document.getElementById('modal-total').innerText = panier.reduce((sum, item) => sum + item.prix, 0).toFixed(2) + "€";
+    }
+
+    function fermerPanier() {
+      document.getElementById('modal-panier').style.display = 'none';
+    }
+
+    function validerPanier() {
+      alert("Merci pour votre commande ! (simulation)");
+      panier = [];
+      majPanier();
+      fermerPanier();
     }
   </script>
 </body>
