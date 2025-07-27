@@ -137,10 +137,14 @@ header {
   text-align: center;
 }
 .recrutement iframe {
-  border-radius: 12px;
+  max-width: 100%;
+  min-width: 280px;
   border: none;
-  margin-top: 2em;
-  box-shadow: 0 0 20px rgba(0,255,128,0.1);
+}
+@media (max-width: 600px) {
+  .recrutement iframe {
+    height: 1200px;
+  }
 }
 footer {
   background-color: #111;
