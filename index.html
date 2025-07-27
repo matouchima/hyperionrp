@@ -82,38 +82,28 @@
   </section>
 
   <!-- Section Recrutement -->
- <section id="recrutement" class="recrutement">
-  <h2>📋 Formulaire de Recrutement</h2>
-  <form action="https://formspree.io/f/mvgqrgrj" method="POST" class="formulaire">
-    <label>Nom Minecraft <input type="text" name="pseudo" required> </label>
-    <label>Âge <input type="number" name="age" required> </label>
-    <label>Poste souhaité
-      <select name="poste" required>
-        <option value="modérateur">Modérateur</option>
-        <option value="animateur">Animateur</option>
-        <option value="développeur">Développeur</option>
-        <option value="autre">Autre</option>
-      </select>
-    </label>
-    <label>Pourquoi veux-tu rejoindre le staff ?
-      <textarea name="motivation" rows="4" required></textarea>
-    </label>
-    <button type="submit">Envoyer la candidature</button>
+<section id="recrutement" class="recrutement">
+  <h2>📋 Recrutement Staff HyperionRP</h2>
+  <p>Remplis ce formulaire si tu souhaites rejoindre notre équipe !</p>
+  <form action="https://formspree.io/f/mvgqrgrj" method="POST" class="formulaire-recrutement">
+    <label for="pseudo">Pseudo Minecraft :</label>
+    <input type="text" name="pseudo" id="pseudo" required>
+
+    <label for="role">Poste souhaité :</label>
+    <select name="role" id="role" required>
+      <option value="Modérateur">Modérateur</option>
+      <option value="Développeur">Développeur</option>
+      <option value="Builder">Builder</option>
+      <option value="Animateur">Animateur</option>
+    </select>
+
+    <label for="motivation">Pourquoi toi ?</label>
+    <textarea name="motivation" id="motivation" rows="5" required></textarea>
+
+    <button type="submit">📨 Envoyer la candidature</button>
   </form>
 </section>
-  
-  <label>
-    Your email:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Your message:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
-</form>
-  </section>
+
 
   <footer>
     <p>&copy; 2025 HyperionRP. Tous droits réservés.</p>
