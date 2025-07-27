@@ -1,34 +1,39 @@
-.panier {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #222;
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px #0008;
-  z-index: 1000;
-}
-.panier button {
-  margin-left: 10px;
+.btn-panier {
   background: #27ae60;
   color: #fff;
   border: none;
-  border-radius: 5px;
-  padding: 5px 12px;
+  border-radius: 8px;
+  padding: 0.7em 1.2em;
+  font-weight: bold;
   cursor: pointer;
+  margin-left: 2em;
+  text-decoration: none;
+  transition: background 0.2s;
 }
-.modal {
-  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 2000;
+.btn-panier:hover { background: #219150; }
+
+.panier-page {
+  background: #181818;
+  color: #fff;
+  max-width: 500px;
+  margin: 100px auto 40px auto;
+  padding: 2em 1em;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px #0008;
+  text-align: center;
 }
-.modal-content {
-  background: #1a1a1a; color: #fff; padding: 2em; border-radius: 12px; min-width: 320px;
+.panier-page ul { list-style: none; padding: 0; }
+.panier-page li { margin-bottom: 1em; }
+.panier-page button, .btn-retour {
+  background: #27ae60;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7em 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0.5em;
+  text-decoration: none;
+  transition: background 0.2s;
 }
-.modal-content ul { list-style: none; padding: 0; }
-.modal-content li { margin-bottom: 1em; }
-.modal-content button { margin-left: 10px; }
-.modal-content input[type="number"] {
-  background: #222; color: #fff; border: 1px solid #27ae60; border-radius: 4px; padding: 2px 6px; margin: 0 5px;
-}
-#confirmation { margin-top: 1em; font-weight: bold; }
+.panier-page button:hover, .btn-retour:hover { background: #219150; }
