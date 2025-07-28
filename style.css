@@ -152,43 +152,22 @@ footer {
   font-size: 0.9em;
   border-top: 1px solid #333;
 }
-.btn-panier {
-  background: #27ae60;
+.btn-boutique-externe {
+  display: inline-block;
+  background: linear-gradient(90deg, #27ae60 60%, #219150 100%);
   color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 0.7em 1.2em;
   font-weight: bold;
-  cursor: pointer;
-  margin-left: 2em;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-.btn-panier:hover { background: #219150; }
-
-.panier-page {
-  background: #181818;
-  color: #fff;
-  max-width: 500px;
-  margin: 100px auto 40px auto;
-  padding: 2em 1em;
+  font-size: 1.15em;
+  padding: 1em 2em;
   border-radius: 12px;
-  box-shadow: 0 4px 16px #0008;
-  text-align: center;
-}
-.panier-page ul { list-style: none; padding: 0; }
-.panier-page li { margin-bottom: 1em; }
-.panier-page button, .btn-retour {
-  background: #27ae60;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 0.7em 1.2em;
-  font-weight: bold;
-  cursor: pointer;
-  margin: 0.5em;
+  margin: 2em auto 1em auto;
   text-decoration: none;
-  transition: background 0.2s;
+  box-shadow: 0 4px 16px #0006;
+  transition: background 0.2s, transform 0.2s;
 }
-.panier-page button:hover, .btn-retour:hover { background: #219150; }
-.btn-panier { background: #27ae60; color: #fff; border: none; border-radius: 8px; padding: 0.7em 1.2em; font-weight: bold; cursor: pointer; margin-left: 2em; text-decoration: none; transition: background 0.2s; } .btn-panier:hover { background: #219150; } .panier-page { background: #181818; color: #fff; max-width: 500px; margin: 100px auto 40px auto; padding: 2em 1em; border-radius: 12px; box-shadow: 0 4px 16px #0008; text-align: center; } .panier-page ul { list-style: none; padding: 0; } .panier-page li { margin-bottom: 1em; } .panier-page button, .btn-retour { background: #27ae60; color: #fff; border: none; border-radius: 8px; padding: 0.7em 1.2em; font-weight: bold; cursor: pointer; margin: 0.5em; text-decoration: none; transition: background 0.2s; } .panier-page button:hover, .btn-retour:hover { background: #219150; }
+.btn-boutique-externe:hover {
+  background: linear-gradient(90deg, #219150 60%, #27ae60 100%);
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px #0008;
+}
