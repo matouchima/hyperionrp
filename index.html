@@ -50,36 +50,9 @@
   </section>
 
   <!-- Section Boutique -->
-  <section id="boutique" class="boutique">
-    <h2>🌟 Boutique HyperionRP</h2>
-    <div class="produits">
-      <div class="carte-produit">
-        <h3>Grade VIP</h3>
-        <p>Accès à des privilèges exclusifs, salon Discord privé, effets cosmiques.</p>
-        <span class="prix">4.99€</span>
-        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Grade VIP', 4.99, false); return false;">Ajouter au panier</a>
-      </div>
-      <div class="carte-produit">
-        <h3>Kit de départ</h3>
-        <p>Tout ce qu’il faut pour bien commencer l’aventure RP !</p>
-        <span class="prix">2.50€</span>
-        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Kit de départ', 2.50, false); return false;">Ajouter au panier</a>
-      </div>
-      <div class="carte-produit">
-        <h3>Achat d’argent virtuel</h3>
-        <p>Obtiens de la monnaie en jeu pour acheter des items exclusifs.</p>
-        <span class="prix">5.00€</span>
-        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Achat d’argent virtuel', 5.00, false); return false;">Ajouter au panier</a>
-      </div>
-      <div class="carte-produit">
-        <h3>Don Libre</h3>
-        <p>Soutiens le serveur et la communauté !</p>
-        <span class="prix">Montant libre</span>
-        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Don Libre', 0, true); return false;">Ajouter au panier</a>
-      </div>
-    </div>
-    <p class="avertissement">⚠️ Avertissement : les dons libres ne sont pas remboursables.</p>
-  </section>
+ <a href="https://hyperionrp.tebex.io/" class="btn-boutique-externe" target="_blank">
+  🛒 Accéder à la boutique officielle
+</a>
 
   <!-- Section Recrutement -->
 <section id="recrutement" class="recrutement">
@@ -101,33 +74,3 @@
       navigator.clipboard.writeText("hyperionrp.aternos.me");
       alert("IP copiée : hyperionrp.aternos.me");
     }
-
-    // Panier avec stockage local
-    let panier = JSON.parse(localStorage.getItem('panier') || '[]');
-
-    function ajouterAuPanier(nom, prix, isDonLibre) {
-      let quantite = 1;
-      if (isDonLibre) {
-        let montant = prompt("Quel montant souhaitez-vous donner ? (en €)", "5");
-        if (!montant) return;
-        montant = parseFloat(montant.replace(',', '.'));
-        if (isNaN(montant) || montant <= 0) return;
-        prix = montant;
-      }
-      let index = panier.findIndex(item => item.nom === nom && (!isDonLibre));
-      if (index !== -1 && !isDonLibre) {
-        panier[index].quantite += 1;
-      } else {
-        panier.push({ nom, prix, quantite, isDonLibre });
-      }
-      majPanier();
-    }
-
-    function majPanier() {
-      let count = panier.reduce((sum, item) => sum + item.quantite, 0);
-      // Optionnel : afficher le nombre d'articles dans le menu ou ailleurs
-      localStorage.setItem('panier', JSON.stringify(panier));
-    }
-  </script>
-</body>
-</html>
