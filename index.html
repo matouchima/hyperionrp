@@ -12,6 +12,7 @@
   <nav class="nav-fixe">
     <a href="#accueil">🏠 Accueil</a>
     <a href="#staff">👑 Staff</a>
+    <a href="#boutique">🛍️ Boutique</a>
     <a href="#recrutement">📋 Recrutement</a>
   </nav>
 
@@ -47,15 +48,27 @@
     </div>
   </section>
 
-  <!-- Section Boutique -->
-  <section class="boutique-externe">
-  <h2>💖 Soutenir HyperionRP</h2>
-  <p>Tu veux aider le serveur ? Fais un don sécurisé via PayPal !</p>
-  <a href="https://www.paypal.me/tonpseudo" class="btn-boutique-externe" target="_blank">
-    💸 Faire un don via PayPal
-  </a>
-</section>
-  
+  <!-- Section Boutique avec bouton PayPal -->
+  <section id="boutique" class="boutique-externe">
+    <h2>🌟 Boutique & Soutien</h2>
+    <p>Tu veux aider le serveur ? Fais un don sécurisé via PayPal !</p>
+    <a href="https://www.paypal.me/tonpseudo" class="btn-boutique-externe" target="_blank">
+      💸 Faire un don via PayPal
+    </a>
+    <!-- Ajoute ici d'autres produits ou liens si besoin -->
+  </section>
+
+  <!-- Section Recrutement avec Google Form -->
+  <section id="recrutement" class="recrutement">
+    <h2>📋 Formulaire de Recrutement</h2>
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSck46po1bWV6uiB4I4J8fyqy36n4W1wVD58dL1YIvkUDzQL6A/viewform?embedded=true"
+      width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0"
+      style="background:#fff;border-radius:12px;">
+      Chargement…
+    </iframe>
+  </section>
+
   <footer>
     <p>&copy; 2025 HyperionRP. Tous droits réservés.</p>
   </footer>
@@ -65,3 +78,6 @@
       navigator.clipboard.writeText("hyperionrp.aternos.me");
       alert("IP copiée : hyperionrp.aternos.me");
     }
+  </script>
+</body>
+</html>
