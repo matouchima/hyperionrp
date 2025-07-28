@@ -53,7 +53,22 @@
       <section class="boutique-externe">
   <h2>💖 Soutenir HyperionRP</h2>
   <div class="boutons-paypal">
-    <a href="https://www.paypal.me/tonpseudo" class="btn-boutique-externe" target="_blank">
+    <div id="donate-button-container">
+<div id="donate-button"></div>
+<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+<script>
+PayPal.Donation.Button({
+env:'production',
+hosted_button_id:'XJR5C9VCEGKCG',
+image: {
+src:'https://pics.paypal.com/00/s/OWQ5YTg1NDUtZmI4MC00Y2I3LWJjNTQtMmM1ODc0MjlkNGUz/file.PNG',
+alt:'Bouton Faites un don avec PayPal',
+title:'PayPal - The safer, easier way to pay online!',
+}
+}).render('#donate-button');
+</script>
+</div>
+
       💸 Faire un don via PayPal
     </a>
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" style="display:inline-block;">
