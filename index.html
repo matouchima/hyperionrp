@@ -50,14 +50,27 @@
 
   <!-- Section Boutique avec bouton PayPal -->
   <section id="boutique" class="boutique-externe">
-    <h2>🌟 Boutique & Soutien</h2>
-    <p>Tu veux aider le serveur ? Fais un don sécurisé via PayPal !</p>
-    <a href="https://www.paypal.com/ncp/payment/NHXUCRP2CSPVE" class="btn-boutique-externe" target="_blank">
+      <section class="boutique-externe">
+  <h2>💖 Soutenir HyperionRP</h2>
+  <div class="boutons-paypal">
+    <a href="https://www.paypal.me/tonpseudo" class="btn-boutique-externe" target="_blank">
       💸 Faire un don via PayPal
     </a>
-    <!-- Ajoute ici d'autres produits ou liens si besoin -->
-  </section>
-
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" style="display:inline-block;">
+      <input type="hidden" name="cmd" value="_xclick-subscriptions">
+      <input type="hidden" name="business" value="ton@email.com">
+      <input type="hidden" name="item_name" value="Grade VIP HyperionRP">
+      <input type="hidden" name="currency_code" value="EUR">
+      <input type="hidden" name="a3" value="4.99">
+      <input type="hidden" name="p3" value="1">
+      <input type="hidden" name="t3" value="M">
+      <input type="hidden" name="src" value="1">
+      <input type="hidden" name="sra" value="1">
+      <input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="S’abonner au Grade VIP">
+      <img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+    </form>
+  </div>
+</section>
   <!-- Section Recrutement avec Google Form -->
   <section id="recrutement" class="recrutement">
     <h2>📋 Formulaire de Recrutement</h2>
