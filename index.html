@@ -12,7 +12,6 @@
   <nav class="nav-fixe">
     <a href="#accueil">🏠 Accueil</a>
     <a href="#staff">👑 Staff</a>
-    <a href="#boutique">🛍️ Boutique</a>
     <a href="#recrutement">📋 Recrutement</a>
   </nav>
 
@@ -49,41 +48,14 @@
   </section>
 
   <!-- Section Boutique -->
-<h2> 🛍️ boutique HyperionRP </h2>
-  <h3>grade vip </span></h3>
-  <div id="paypal-button-container-P-5D327360R0618870NNCDNZNQ"></div>
-<script src="https://www.paypal.com/sdk/js?client-id=AagYX5qRbcqsl-WFO2ugax6S4XXAdHIp83EKOrInXweo1DHcFb_etbo1jFK_eE8GUWjTvD3maBvtjb32&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
-<script>
-  paypal.Buttons({
-      style: {
-          shape: 'pill',
-          color: 'gold',
-          layout: 'vertical',
-          label: 'subscribe'
-      },
-      createSubscription: function(data, actions) {
-        return actions.subscription.create({
-          /* Creates the subscription */
-          plan_id: 'P-5D327360R0618870NNCDNZNQ'
-        });
-      },
-      onApprove: function(data, actions) {
-        alert(data.subscriptionID); // You can add optional success message for the subscriber here
-      }
-  }).render('#paypal-button-container-P-5D327360R0618870NNCDNZNQ'); // Renders the PayPal button
-</script>
-<body id="boutique">
-  <!-- Section Recrutement -->
-<section id="recrutement" class="recrutement">
-  <h2>📋 Formulaire de Recrutement</h2>
-  <iframe
-    src="https://docs.google.com/forms/d/e/1FAIpQLSck46po1bWV6uiB4I4J8fyqy36n4W1wVD58dL1YIvkUDzQL6A/viewform?embedded=true"
-    width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0"
-    style="background:#fff;border-radius:12px;">
-    Chargement…
-  </iframe>
+  <section class="boutique-externe">
+  <h2>💖 Soutenir HyperionRP</h2>
+  <p>Tu veux aider le serveur ? Fais un don sécurisé via PayPal !</p>
+  <a href="https://www.paypal.me/tonpseudo" class="btn-boutique-externe" target="_blank">
+    💸 Faire un don via PayPal
+  </a>
 </section>
-
+  
   <footer>
     <p>&copy; 2025 HyperionRP. Tous droits réservés.</p>
   </footer>
