@@ -124,12 +124,77 @@
   </footer>
 
   <!-- Scripts -->
-  <script>
-    function copyIP() {
-      navigator.clipboard.writeText("hyperionrp.aternos.me");
-      alert("IP copiée : hyperionrp.aternos.me");
+ <script>
+  // Copier l'IP
+  function copyIP() {
+    navigator.clipboard.writeText("hyperionrp.aternos.me");
+    alert("IP copiée : hyperionrp.aternos.me");
+  }
+
+  // Afficher/masquer la fenêtre de chat
+  function toggleChat() {
+    const chatBox = document.getElementById('chatBox');
+    if (chatBox.style.display === 'block') {
+      chatBox.style.display = 'none';
+    } else {
+      chatBox.style.display = 'block';
     }
-  </script>
+  }
+
+  // Envoyer un message
+  function sendMessage() {
+    const userInput = document.getElementById('userInput');
+    const message = userInput.value.trim();
+    if (message === '') return;
+
+    addMessage(message, 'user');
+    userInput.value = '';
+
+    setTimeout(() => {
+      const botResponse = getBotResponse(message);
+      addMessage(botResponse, 'bot');
+    }, 500);
+  }
+
+  // Ajouter un message dans le chat
+  function addMessage(message, sender) {
+    const chatMessages = document.getElementById('chatMessages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-bubble ${sender}`;
+    messageDiv.innerHTML = `<p>${message}</p>`;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // Gérer l'envoi avec la touche Entrée
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      sendMessage();
+    }
+  }
+
+  // Générer une réponse de l'IA
+  function getBotResponse(userMessage) {
+    const lowerCaseMessage = userMessage.toLowerCase();
+
+    if (lowerCaseMessage.includes('discord'))
+      return "Tu peux rejoindre notre Discord ici : <a href='https://discord.gg/fgDnGahS' target='_blank'>Rejoindre le Discord</a> !";
+
+    if (lowerCaseMessage.includes('ip'))
+      return "L'IP du serveur est : hyperionrp.aternos.me. Tu peux la copier en cliquant sur le bouton 'Copier l'IP' en haut de la page !";
+
+    if (lowerCaseMessage.includes('boutique'))
+      return "Notre boutique propose des grades VIP, des kits de départ et plus encore ! Fais défiler vers le bas pour la découvrir.";
+
+    if (lowerCaseMessage.includes('recrutement'))
+      return "Pour rejoindre le staff, remplis le formulaire dans la section 'Recrutement' !";
+
+    if (lowerCaseMessage.includes('bonjour') || lowerCaseMessage.includes('salut') || lowerCaseMessage.includes('hello'))
+      return "Bonjour ! Je suis l'assistante virtuelle de HyperionRP. Comment puis-je t'aider ? 😊";
+
+    return "Désolée, je n'ai pas compris ta question. Voici quelques sujets que je peux aborder : Discord, IP, boutique, recrutement.";
+  }
+</script>
 </body>
 </html>
 
