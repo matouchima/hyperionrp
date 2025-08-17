@@ -25,6 +25,24 @@
       <a href="https://discord.gg/fgDnGahS" target="_blank"><button>💬 Rejoindre le Discord</button></a>
     </div>
   </header>
+  
+  <!-- Fenêtre de chat pour l'IA d'aide -->
+<div class="chat-container">
+  <div class="chat-header" onclick="toggleChat()">
+    <span>🤖 IA HyperionRP</span>
+  </div>
+  <div class="chat-box" id="chatBox">
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-bubble bot">
+        <p>Bonjour ! Je suis l'assistante virtuelle de HyperionRP. Comment puis-je t'aider aujourd'hui ? 😊</p>
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Pose ta question ici..." onkeypress="handleKeyPress(event)" />
+      <button onclick="sendMessage()">Envoyer</button>
+    </div>
+  </div>
+</div>
 
   <!-- Section Staff -->
   <section id="staff" class="staff-section">
