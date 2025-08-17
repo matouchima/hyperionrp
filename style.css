@@ -126,7 +126,8 @@ header {
   padding: 0.6em 1.2em;
   color: white;
   border-radius: 8px;
-  text-decoration: none;
+  border: none;
+  cursor: pointer;
   transition: background 0.2s;
 }
 .bouton-achat:hover {
@@ -158,4 +159,64 @@ footer {
   padding: 1em;
   font-size: 0.9em;
   border-top: 1px solid #333;
+}
+
+/* Panier */
+.cart-modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.cart-modal-content {
+  background-color: #1e1e1e;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #27ae60;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.cart-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cart-close:hover {
+  color: #f0f0f0;
+}
+
+.cart-items {
+  margin-top: 20px;
+}
+
+.cart-item {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+}
+
+.remove-item {
+  cursor: pointer;
+  color: #ffae42;
+  margin-left: 10px;
+}
+
+.cart-total {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: right;
 }
