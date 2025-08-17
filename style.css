@@ -206,12 +206,46 @@ footer {
   border-bottom: 1px solid #333;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.item-quantity {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.item-quantity button {
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.item-quantity span {
+  margin: 0 10px;
+}
+
+.item-total {
+  margin-right: 10px;
 }
 
 .remove-item {
   cursor: pointer;
   color: #ffae42;
-  margin-left: 10px;
 }
 
 .cart-total {
@@ -219,4 +253,10 @@ footer {
   font-weight: bold;
   font-size: 1.2em;
   text-align: right;
+}
+
+/* Bouton PayPal */
+#paypal-button-container {
+  margin-top: 20px;
+  text-align: center;
 }
