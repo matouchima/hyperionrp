@@ -2,12 +2,11 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HyperionRP - Serveur Minecraft</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body id="accueil">
-
   <!-- Menu de navigation fixe -->
   <nav class="nav-fixe">
     <a href="#accueil">🏠 Accueil</a>
@@ -16,6 +15,7 @@
     <a href="#recrutement">📋 Recrutement</a>
   </nav>
 
+  <!-- En-tête avec bannière -->
   <header>
     <img src="banniere.png" alt="Bannière HyperionRP" class="banner" />
     <h1>HyperionRP</h1>
@@ -26,83 +26,106 @@
     </div>
   </header>
 
+  <!-- Section IA d'accueil -->
+  <section id="accueil-ai" class="accueil-ai">
+    <img src="ai_accueil_realiste.png" alt="IA d'accueil HyperionRP" class="ai-image" />
+    <div class="ai-message">
+      <h2>Bienvenue sur HyperionRP, explorateur·se !</h2>
+      <p>Je suis ton assistante virtuelle. Besoin d’aide pour démarrer ton aventure ou rejoindre la communauté ?</p>
+      <div class="ai-buttons">
+        <a href="https://discord.gg/fgDnGahS" class="ai-button">Rejoindre le Discord</a>
+        <button class="ai-button" onclick="scrollToSection('boutique')">Découvrir la boutique</button>
+      </div>
+    </div>
+  </section>
+
   <!-- Section Staff -->
   <section id="staff" class="staff-section">
-  <h2>👑 L'Équipe HyperionRP</h2>
-  <div class="staff-cards">
-    <div class="staff-card">
-      <img src="https://mc-heads.net/avatar/matouchima" alt="matouchima">
-      <h3>matouchima <span class="badge badge-fondateur">Grand Fondateur</span></h3>
-      <p>Créateur du projet HyperionRP, garant de la vision et du développement global.</p>
+    <h2>👑 L'Équipe HyperionRP</h2>
+    <div class="staff-cards">
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/matouchima" alt="matouchima">
+        <h3>matouchima <span class="badge badge-fondateur">Grand Fondateur</span></h3>
+        <p>Créateur du projet HyperionRP, garant de la vision et du développement global.</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/mz_dragon" alt="mz_dragon">
+        <h3>mz_dragon <span class="badge">Gérant Staff</span></h3>
+        <p>Responsable de la gestion et de l'organisation du serveur.</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/tatane" alt="tatane">
+        <h3>tatane <span class="badge">Aide Développeur</span></h3>
+        <p>Assiste dans le développement et les correctifs techniques.</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/le%20chat%20fumeur" alt="le chat fumeur">
+        <h3>le chat fumeur <span class="badge">Aide Développeur</span></h3>
+        <p>Apporte son soutien dans la configuration et les scripts RP.</p>
+      </div>
     </div>
-    <div class="staff-card">
-      <img src="https://mc-heads.net/avatar/mz_dragon" alt="mz_dragon">
-      <h3>mz_dragon <span class="badge">Gérant Staff</span></h3>
-      <p>Responsable de la gestion et de l'organisation du serveur.</p>
-    </div>
-    <div class="staff-card">
-      <img src="https://mc-heads.net/avatar/tatane" alt="tatane">
-      <h3>tatane <span class="badge">Aide Développeur</span></h3>
-      <p>Assiste dans le développement et les correctifs techniques.</p>
-    </div>
-    <div class="staff-card">
-      <img src="https://mc-heads.net/avatar/le%20chat%20fumeur" alt="le chat fumeur">
-      <h3>le chat fumeur <span class="badge">Aide Développeur</span></h3>
-      <p>Apporte son soutien dans la configuration et les scripts RP.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-  <!-- Section Boutique avec bouton PayPal -->
-  <section id="boutique" class="boutique-externe">
-      <section class="boutique-externe">
-  <h2>💖 Soutenir HyperionRP</h2>
-  <h3>👇💸 Faire un don via PayPal--abonnement grade vip👇</h3>
-  <div class="boutons-paypal">
-    <div id="donate-button-container">
-<div id="donate-button"></div>
-<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-<script>
-PayPal.Donation.Button({
-env:'production',
-hosted_button_id:'XJR5C9VCEGKCG',
-image: {
-src:'https://pics.paypal.com/00/s/OWQ5YTg1NDUtZmI4MC00Y2I3LWJjNTQtMmM1ODc0MjlkNGUz/file.PNG',
-alt:'Bouton Faites un don avec PayPal',
-title:'PayPal - The safer, easier way to pay online!',
-}
-}).render('#donate-button');
-</script>
-</div>
-    
-    <style>.pp-NHXUCRP2CSPVE{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
-<form action="https://www.paypal.com/ncp/payment/NHXUCRP2CSPVE" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
-  <input class="pp-NHXUCRP2CSPVE" type="submit" value="Acheter" />
-  <img src=https://www.paypalobjects.com/images/Debit_Credit_APM.svg alt="cards" />
-  <section style="font-size: 0.75rem;"> Optimisé par <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
-</form>
- </section>
-    
-   <!-- Section Recrutement avec Google Form -->
+  <!-- Section Boutique -->
+  <section id="boutique" class="boutique">
+    <h2>🌟 Boutique HyperionRP</h2>
+    <div class="produits">
+      <div class="carte-produit">
+        <h3>Grade VIP</h3>
+        <p>Accès à des privilèges exclusifs, salon Discord privé, effets cosmiques.</p>
+        <span class="prix">4.99€</span>
+        <a href="#" class="bouton-achat">Acheter</a>
+      </div>
+      <div class="carte-produit">
+        <h3>Kit de départ</h3>
+        <p>Tout ce qu’il faut pour bien commencer l’aventure RP !</p>
+        <span class="prix">2.50€</span>
+        <a href="#" class="bouton-achat">Acheter</a>
+      </div>
+      <div class="carte-produit">
+        <h3>Achat d’argent virtuel</h3>
+        <p>Obtiens de la monnaie en jeu pour acheter des items exclusifs.</p>
+        <span class="prix">5.00€</span>
+        <a href="#" class="bouton-achat">Acheter</a>
+      </div>
+      <div class="carte-produit">
+        <h3>Don Libre</h3>
+        <p>Soutiens le serveur et la communauté !</p>
+        <span class="prix">Montant libre</span>
+        <a href="#" class="bouton-achat">Acheter</a>
+      </div>
+    </div>
+    <p class="avertissement">⚠️ Avertissement : les dons libres ne sont pas remboursables.</p>
+  </section>
+
+  <!-- Section Recrutement -->
   <section id="recrutement" class="recrutement">
-    <h2>📋 Formulaire de Recrutement</h2>
+    <h2>📋 Recrutement Staff HyperionRP</h2>
+    <p>Remplis ce formulaire Google si tu souhaites rejoindre notre équipe !</p>
     <iframe
-    
-      src="https://docs.google.com/forms/d/e/1FAIpQLSck46po1bWV6uiB4I4J8fyqy36n4W1wVD58dL1YIvkUDzQL6A/viewform?embedded=true"
-      width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0"
-      style="background:#fff;border-radius:12px;">
+      src="https://docs.google.com/forms/d/e/1FAIpQLSd0tjBIEp6ueYezQ7LC1IHAqzvfq0eHZCj10jJRLdlmlD5sUA/viewform?embedded=true"
+      width="100%"
+      height="800"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0">
       Chargement…
     </iframe>
   </section>
 
+  <!-- Pied de page -->
   <footer>
     <p>&copy; 2025 HyperionRP. Tous droits réservés.</p>
   </footer>
 
+  <!-- Scripts -->
   <script>
     function copyIP() {
       navigator.clipboard.writeText("hyperionrp.aternos.me");
       alert("IP copiée : hyperionrp.aternos.me");
+    }
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
     }
   </script>
 </body>
