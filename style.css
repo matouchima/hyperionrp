@@ -1,3 +1,4 @@
+/* Style général */
 body {
   font-family: 'Segoe UI', sans-serif;
   background: #0f0f0f;
@@ -6,7 +7,9 @@ body {
   padding: 60px 0 0 0;
   text-align: center;
 }
-.navbar {
+
+/* Menu fixe */
+.nav-fixe {
   background-color: #111;
   position: fixed;
   width: 100%;
@@ -14,26 +17,20 @@ body {
   left: 0;
   z-index: 999;
   border-bottom: 1px solid #333;
+  padding: 0.8em 0;
 }
-.navbar ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  margin: 0;
-  padding: 0.8em;
-}
-.navbar li {
-  margin: 0 1.2em;
-}
-.navbar a {
+.nav-fixe a {
   text-decoration: none;
   color: #f0f0f0;
   font-weight: bold;
+  margin: 0 1.2em;
   transition: color 0.2s;
 }
-.navbar a:hover {
+.nav-fixe a:hover {
   color: #27ae60;
 }
+
+/* En-tête */
 header {
   padding: 2em;
   background-color: #1a1a1a;
@@ -54,6 +51,54 @@ header {
   color: white;
   cursor: pointer;
 }
+
+/* Section IA d'accueil */
+.accueil-ai {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+  background: rgba(10, 10, 10, 0.9);
+  border-radius: 12px;
+  margin: 2em auto;
+  max-width: 900px;
+  border: 1px solid rgba(39, 174, 96, 0.3);
+  box-shadow: 0 0 20px rgba(39, 174, 96, 0.2);
+}
+.ai-image {
+  width: 300px;
+  margin-bottom: 1.5em;
+}
+.ai-message {
+  text-align: center;
+  color: #f0f0f0;
+}
+.ai-message h2 {
+  color: #27ae60;
+  margin-bottom: 0.5em;
+  font-size: 1.6em;
+}
+.ai-buttons {
+  margin-top: 1.5em;
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+}
+.ai-button {
+  padding: 0.7em 1.5em;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.ai-button:hover {
+  background: #219150;
+}
+
+/* Section Staff */
 .staff-section {
   padding: 2em 1em;
   background-color: #121212;
@@ -84,6 +129,14 @@ header {
   border-radius: 4px;
   font-size: 0.75em;
 }
+.badge-fondateur {
+  background: linear-gradient(45deg, #ffcc00, #ff6600);
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px #ff9900aa;
+}
+
+/* Section Boutique */
 .boutique {
   padding: 3em 1em;
   background-color: #1a1a1a;
@@ -99,7 +152,7 @@ header {
   padding: 1.5em;
   border-radius: 12px;
   width: 250px;
-  box-shadow: 0 0 10px rgba(0,255,128,0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 128, 0.2);
 }
 .carte-produit h3 {
   margin-bottom: 0.5em;
@@ -130,6 +183,8 @@ header {
   font-size: 0.9em;
   color: #ffae42;
 }
+
+/* Section Recrutement */
 .recrutement {
   background-color: #181818;
   padding: 3em 1em;
@@ -137,63 +192,16 @@ header {
   text-align: center;
 }
 .recrutement iframe {
-  max-width: 100%;
-  min-width: 280px;
+  border-radius: 12px;
   border: none;
+  margin-top: 2em;
+  box-shadow: 0 0 20px rgba(0, 255, 128, 0.1);
 }
-@media (max-width: 600px) {
-  .recrutement iframe {
-    height: 1200px;
-  }
-}
+
+/* Pied de page */
 footer {
   background-color: #111;
   padding: 1em;
   font-size: 0.9em;
   border-top: 1px solid #333;
-}
-.btn-boutique-externe {
-  display: inline-block;
-  background: linear-gradient(90deg, #27ae60 60%, #219150 100%);
-  color: #fff;
-  font-weight: bold;
-  font-size: 1.15em;
-  padding: 1em 2em;
-  border-radius: 12px;
-  margin: 2em auto 1em auto;
-  text-decoration: none;
-  box-shadow: 0 4px 16px #0006;
-  transition: background 0.2s, transform 0.2s;
-}
-.btn-boutique-externe:hover {
-  background: linear-gradient(90deg, #219150 60%, #27ae60 100%);
-  color: #fff;
-  transform: scale(1.05);
-  box-shadow: 0 8px 24px #0008;
-}
-.boutons-paypal {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2em;
-  justify-content: center;
-  align-items: center;
-  margin: 2em 0;
-}
-.btn-boutique-externe {
-  display: inline-block;
-  background: linear-gradient(90deg, #27ae60 60%, #219150 100%);
-  color: #fff;
-  font-weight: bold;
-  font-size: 1.15em;
-  padding: 1em 2em;
-  border-radius: 12px;
-  text-decoration: none;
-  box-shadow: 0 4px 16px #0006;
-  transition: background 0.2s, transform 0.2s;
-}
-.btn-boutique-externe:hover {
-  background: linear-gradient(90deg, #219150 60%, #27ae60 100%);
-  color: #fff;
-  transform: scale(1.05);
-  box-shadow: 0 8px 24px #0008;
 }
