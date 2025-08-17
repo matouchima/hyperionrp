@@ -1,244 +1,196 @@
-/* Style général */
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #0f0f0f;
-  color: #f0f0f0;
-  margin: 0;
-  padding: 60px 0 0 0;
-  text-align: center;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HyperionRP - Serveur Minecraft</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body id="accueil">
+  <!-- Menu de navigation fixe -->
+  <nav class="nav-fixe">
+    <a href="#accueil">🏠 Accueil</a>
+    <a href="#staff">👑 Staff</a>
+    <a href="#boutique">🛍️ Boutique</a>
+    <a href="#recrutement">📋 Recrutement</a>
+  </nav>
 
-/* Menu fixe */
-.nav-fixe {
-  background-color: #111;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  border-bottom: 1px solid #333;
-  padding: 0.8em 0;
-}
-.nav-fixe a {
-  text-decoration: none;
-  color: #f0f0f0;
-  font-weight: bold;
-  margin: 0 1.2em;
-  transition: color 0.2s;
-}
-.nav-fixe a:hover {
-  color: #27ae60;
-}
+  <!-- En-tête avec bannière -->
+  <header>
+    <img src="banniere.png" alt="Bannière HyperionRP" class="banner" />
+    <h1>HyperionRP</h1>
+    <p class="tagline">Plonge dans un monde où chaque joueur écrit sa propre histoire — bienvenue sur HyperionRP</p>
+    <div class="buttons">
+      <button onclick="copyIP()">📋 Copier l’IP</button>
+      <a href="https://discord.gg/fgDnGahS" target="_blank"><button>💬 Rejoindre le Discord</button></a>
+    </div>
+  </header>
 
-/* En-tête */
-header {
-  padding: 2em;
-  background-color: #1a1a1a;
-}
-.banner {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-bottom: 4px solid #27ae60;
-}
-.buttons button {
-  margin: 10px;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1em;
-  background: #27ae60;
-  color: white;
-  cursor: pointer;
-}
+  <!-- Section Staff -->
+  <section id="staff" class="staff-section">
+    <h2>👑 L'Équipe HyperionRP</h2>
+    <div class="staff-cards">
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/matouchima" alt="matouchima">
+        <h3>matouchima <span class="badge badge-fondateur">Grand Fondateur</span></h3>
+        <p>Créateur du projet HyperionRP, garant de la vision et du développement global.</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/mz_dragon" alt="mz_dragon">
+        <h3>mz_dragon <span class="badge">Gérant Staff</span></h3>
+        <p>Responsable de la gestion et de l'organisation du serveur.</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/tatane" alt="tatane">
+        <h3>tatane <span class="badge">Aide Développeur</span></h3>
+        <p>Assiste dans le développement et les correctifs techniques.</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/le%20chat%20fumeur" alt="le chat fumeur">
+        <h3>le chat fumeur <span class="badge">Aide Développeur</span></h3>
+        <p>Apporte son soutien dans la configuration et les scripts RP.</p>
+      </div>
+    </div>
+  </section>
 
-/* Section Staff */
-.staff-section {
-  padding: 2em 1em;
-  background-color: #121212;
-}
-.staff-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2em;
-}
-.staff-card {
-  background: #1f1f1f;
-  border-radius: 12px;
-  padding: 1em;
-  width: 220px;
-  box-shadow: 0 0 10px rgba(0, 255, 128, 0.2);
-}
-.staff-card img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
-.badge {
-  display: inline-block;
-  background: #27ae60;
-  color: white;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.75em;
-}
-.badge-fondateur {
-  background: linear-gradient(45deg, #ffcc00, #ff6600);
-  font-weight: bold;
-  text-transform: uppercase;
-  box-shadow: 0 0 10px #ff9900aa;
-}
+  <!-- Section Boutique -->
+  <section id="boutique" class="boutique">
+    <h2>🌟 Boutique HyperionRP</h2>
+    <div class="produits">
+      <div class="carte-produit">
+        <h3>Grade VIP</h3>
+        <p>Accès à des privilèges exclusifs, salon Discord privé, effets cosmiques.</p>
+        <span class="prix">4.99€</span>
+        <a href="#" class="bouton-achat">Acheter</a>
+      </div>
+      <div class="carte-produit">
+        <h3>Kit de départ</h3>
+        <p>Tout ce qu’il faut pour bien commencer l’aventure RP !</p>
+        <span class="prix">2.50€</span>
+        <a href="#" class="bouton-achat">Acheter</a>
+      </div>
+      <div class="carte-produit">
+        <h3>Achat d’argent virtuel</h3>
+        <p>Obtiens de la monnaie en jeu pour acheter des items exclusifs.</p>
+        <span class="prix">5.00€</span>
+        <a href="#" class="bouton-achat">Acheter</a>
+      </div>
+      <div class="carte-produit">
+        <h3>Don Libre</h3>
+        <p>Soutiens le serveur et la communauté !</p>
+        <span class="prix">Montant libre</span>
+        <a href="#" class="bouton-achat">Acheter</a>
+      </div>
+    </div>
+    <p class="avertissement">⚠️ Avertissement : les dons libres ne sont pas remboursables.</p>
+  </section>
 
-/* Section Boutique */
-.boutique {
-  padding: 3em 1em;
-  background-color: #1a1a1a;
-}
-.produits {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2em;
-  justify-content: center;
-}
-.carte-produit {
-  background: #2b2b2b;
-  padding: 1.5em;
-  border-radius: 12px;
-  width: 250px;
-  box-shadow: 0 0 10px rgba(0, 255, 128, 0.2);
-}
-.carte-produit h3 {
-  margin-bottom: 0.5em;
-}
-.carte-produit p {
-  font-size: 0.95em;
-  margin-bottom: 1em;
-  color: #ccc;
-}
-.carte-produit .prix {
-  font-weight: bold;
-  margin-bottom: 1em;
-  color: #27ae60;
-}
-.bouton-achat {
-  background: #27ae60;
-  padding: 0.6em 1.2em;
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-.bouton-achat:hover {
-  background: #219150;
-}
-.avertissement {
-  margin-top: 2em;
-  font-size: 0.9em;
-  color: #ffae42;
-}
+  <!-- Section Recrutement -->
+  <section id="recrutement" class="recrutement">
+    <h2>📋 Recrutement Staff HyperionRP</h2>
+    <p>Remplis ce formulaire Google si tu souhaites rejoindre notre équipe !</p>
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSd0tjBIEp6ueYezQ7LC1IHAqzvfq0eHZCj10jJRLdlmlD5sUA/viewform?embedded=true"
+      width="100%"
+      height="800"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0">
+      Chargement…
+    </iframe>
+  </section>
 
-/* Section Recrutement */
-.recrutement {
-  background-color: #181818;
-  padding: 3em 1em;
-  color: #f0f0f0;
-  text-align: center;
-}
-.recrutement iframe {
-  border-radius: 12px;
-  border: none;
-  margin-top: 2em;
-  box-shadow: 0 0 20px rgba(0, 255, 128, 0.1);
-}
+  <!-- Fenêtre de chat pour l'IA d'aide -->
+  <div class="chat-container">
+    <div class="chat-header" onclick="toggleChat()">
+      <span>🤖 IA HyperionRP</span>
+    </div>
+    <div class="chat-box" id="chatBox">
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-bubble bot">
+          <p>Bonjour ! Je suis l'assistante virtuelle de HyperionRP. Comment puis-je t'aider aujourd'hui ? 😊</p>
+        </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Pose ta question ici..." onkeypress="handleKeyPress(event)" />
+        <button onclick="sendMessage()">Envoyer</button>
+      </div>
+    </div>
+  </div>
 
-/* Pied de page */
-footer {
-  background-color: #111;
-  padding: 1em;
-  font-size: 0.9em;
-  border-top: 1px solid #333;
-}
+  <!-- Pied de page -->
+  <footer>
+    <p>&copy; 2025 HyperionRP. Tous droits réservés.</p>
+  </footer>
 
-/* Fenêtre de chat */
-.chat-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-}
+  <!-- Scripts -->
+  <script>
+    function copyIP() {
+      navigator.clipboard.writeText("hyperionrp.aternos.me");
+      alert("IP copiée : hyperionrp.aternos.me");
+    }
 
-.chat-header {
-  background: #27ae60;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 10px 10px 0 0;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
+    // Fonction pour afficher/masquer la fenêtre de chat
+    function toggleChat() {
+      const chatBox = document.getElementById('chatBox');
+      chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block';
+    }
 
-.chat-box {
-  display: none;
-  background: #1e1e1e;
-  width: 300px;
-  height: 400px;
-  border-radius: 0 0 10px 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-}
+    // Fonction pour envoyer un message
+    function sendMessage() {
+      const userInput = document.getElementById('userInput');
+      const message = userInput.value.trim();
+      if (message === '') return;
 
-.chat-messages {
-  height: 320px;
-  padding: 15px;
-  overflow-y: auto;
-  background: #2a2a2a;
-}
+      // Ajoute le message de l'utilisateur
+      addMessage(message, 'user');
+      userInput.value = '';
 
-.chat-bubble {
-  margin-bottom: 10px;
-  padding: 10px 15px;
-  border-radius: 10px;
-  max-width: 80%;
-}
+      // Réponse automatique de l'IA
+      setTimeout(() => {
+        const botResponse = getBotResponse(message);
+        addMessage(botResponse, 'bot');
+      }, 500);
+    }
 
-.chat-bubble.bot {
-  background: #27ae60;
-  color: white;
-  margin-left: 0;
-  margin-right: auto;
-  border-bottom-left-radius: 0;
-}
+    // Fonction pour ajouter un message dans le chat
+    function addMessage(message, sender) {
+      const chatMessages = document.getElementById('chatMessages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `chat-bubble ${sender}`;
+      messageDiv.innerHTML = `<p>${message}</p>`;
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
 
-.chat-bubble.user {
-  background: #333;
-  color: white;
-  margin-left: auto;
-  margin-right: 0;
-  border-bottom-right-radius: 0;
-}
+    // Fonction pour gérer l'envoi avec la touche Entrée
+    function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    }
 
-.chat-input {
-  display: flex;
-  padding: 10px;
-  background: #1e1e1e;
-  border-top: 1px solid #333;
-}
+    // Fonction pour générer une réponse de l'IA
+    function getBotResponse(userMessage) {
+      const lowerCaseMessage = userMessage.toLowerCase();
 
-.chat-input input {
-  flex: 1;
-  padding: 8px;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-}
+      if (lowerCaseMessage.includes('discord'))
+        return "Tu peux rejoindre notre Discord ici : <a href='https://discord.gg/fgDnGahS' target='_blank'>Rejoindre le Discord</a> !";
 
-.chat-input button {
-  margin-left: 10px;
-  padding: 8px 15px;
-  background: #27ae60;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+      if (lowerCaseMessage.includes('ip'))
+        return "L'IP du serveur est : hyperionrp.aternos.me. Tu peux la copier en cliquant sur le bouton 'Copier l'IP' en haut de la page !";
+
+      if (lowerCaseMessage.includes('boutique'))
+        return "Notre boutique propose des grades VIP, des kits de départ et plus encore ! Fais défiler vers le bas pour la découvrir.";
+
+      if (lowerCaseMessage.includes('recrutement'))
+        return "Pour rejoindre le staff, remplis le formulaire dans la section 'Recrutement' !";
+
+      if (lowerCaseMessage.includes('bonjour') || lowerCaseMessage.includes('salut') || lowerCaseMessage.includes('hello'))
+        return "Bonjour ! Je suis l'assistante virtuelle de HyperionRP. Comment puis-je t'aider ? 😊";
+
+      return "Désolée, je n'ai pas compris ta question. Voici quelques sujets que je peux aborder : Discord, IP, boutique, recrutement.";
+    }
+  </script>
+</body>
+</html>
