@@ -73,30 +73,40 @@ header {
   text-align: center;
   color: #f0f0f0;
 }
-.ai-message h2 {
-  color: #27ae60;
-  margin-bottom: 0.5em;
-  font-size: 1.6em;
+.ai-message-container {
+  text-align: center;
+  color: #f0f0f0;
+  margin-top: 1em;
 }
-.ai-buttons {
-  margin-top: 1.5em;
-  display: flex;
-  gap: 1em;
-  justify-content: center;
+
+.ai-speech-bubble {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  padding: 1em;
+  margin: 1em auto;
+  max-width: 400px;
+  border: 1px solid #27ae60;
+  position: relative;
 }
-.ai-button {
-  padding: 0.7em 1.5em;
-  background: #27ae60;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
+
+.ai-speech-bubble:after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.7) transparent;
+  display: block;
+  width: 0;
 }
-.ai-button:hover {
-  background: #219150;
+
+.ai-speech-bubble p {
+  margin: 0;
+  font-size: 1.1em;
 }
+
 
 /* Section Staff */
 .staff-section {
