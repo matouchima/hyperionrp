@@ -22,7 +22,7 @@
     <p class="tagline">Plonge dans un monde où chaque joueur écrit sa propre histoire — bienvenue sur HyperionRP</p>
     <div class="buttons">
       <button onclick="copyIP()">📋 Copier l’IP</button>
-      <a href="https://discord.gg/U9T8nUBuyh" target="_blank"><button>💬 Rejoindre le Discord</button></a>
+      <a href="https://discord.gg/fgDnGahS" target="_blank"><button>💬 Rejoindre le Discord</button></a>
     </div>
   </header>
 
@@ -100,24 +100,6 @@
     </iframe>
   </section>
 
-  <!-- Fenêtre de chat pour l'IA d'aide -->
-  <div class="chat-container">
-    <div class="chat-header" onclick="toggleChat()">
-      <span>🤖 IA HyperionRP</span>
-    </div>
-    <div class="chat-box" id="chatBox">
-      <div class="chat-messages" id="chatMessages">
-        <div class="chat-bubble bot">
-          <p>Bonjour ! Je suis l'assistante virtuelle de HyperionRP. Comment puis-je t'aider aujourd'hui ? 😊</p>
-        </div>
-      </div>
-      <div class="chat-input">
-        <input type="text" id="userInput" placeholder="Pose ta question ici..." onkeypress="handleKeyPress(event)" />
-        <button onclick="sendMessage()">Envoyer</button>
-      </div>
-    </div>
-  </div>
-
   <!-- Pied de page -->
   <footer>
     <p>&copy; 2025 HyperionRP. Tous droits réservés.</p>
@@ -129,71 +111,6 @@
     function copyIP() {
       navigator.clipboard.writeText("hyperionrp.aternos.me");
       alert("IP copiée : hyperionrp.aternos.me");
-    }
-
-    // Afficher/masquer la fenêtre de chat
-    function toggleChat() {
-      const chatBox = document.getElementById('chatBox');
-      if (chatBox.style.display === 'block') {
-        chatBox.style.display = 'none';
-      } else {
-        chatBox.style.display = 'block';
-      }
-    }
-
-    // Envoyer un message
-    function sendMessage() {
-      const userInput = document.getElementById('userInput');
-      const message = userInput.value.trim();
-      if (message === '') return;
-
-      addMessage(message, 'user');
-      userInput.value = '';
-
-      setTimeout(() => {
-        const botResponse = getBotResponse(message);
-        addMessage(botResponse, 'bot');
-      }, 500);
-    }
-
-    // Ajouter un message dans le chat
-    function addMessage(message, sender) {
-      const chatMessages = document.getElementById('chatMessages');
-      const messageDiv = document.createElement('div');
-      messageDiv.className = `chat-bubble ${sender}`;
-      messageDiv.innerHTML = `<p>${message}</p>`;
-      chatMessages.appendChild(messageDiv);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    // Gérer l'envoi avec la touche Entrée
-    function handleKeyPress(event) {
-      if (event.key === 'Enter') {
-        sendMessage();
-      }
-    }
-
-    // Générer une réponse de l'IA
-    function getBotResponse(userMessage) {
-      const lowerCaseMessage = userMessage.toLowerCase();
-
-      if (lowerCaseMessage.includes('discord'))
-        return "Tu peux rejoindre notre Discord ici : <a href='https://discord.gg/fgDnGahS' target='_blank'>Rejoindre le Discord</a> !";
-
-      if (lowerCaseMessage.includes('ip'))
-        return "L'IP du serveur est : hyperionrp.aternos.me. Tu peux la copier en cliquant sur le bouton 'Copier l'IP' en haut de la page !";
-
-      if (lowerCaseMessage.includes('boutique'))
-        return "Notre boutique propose des grades VIP, des kits de départ et plus encore ! Fais défiler vers le bas pour la découvrir.";
-
-      if (lowerCaseMessage.includes('recrutement'))
-        return "Pour rejoindre le staff, remplis le formulaire dans la section 'Recrutement' !";
-
-      if (lowerCaseMessage.includes('bonjour') || lowerCaseMessage.includes('salut') || lowerCaseMessage.includes('hello'))
-        return "Bonjour ! Je suis l'assistante virtuelle de HyperionRP. Comment puis-je t'aider ? 😊";
-
-      // Transfert vers un conseiller
-      return "Désolée, je ne peux pas répondre à cette question. mais tu peut parler conseiller humain. <br><br> Tu peux contacter notre équipe sur Discord : <a href='https://discord.gg/U9T8nUBuyh' target='_blank'>Rejoindre le Discord</a>.";
     }
   </script>
 </body>
