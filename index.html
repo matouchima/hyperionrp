@@ -35,7 +35,12 @@
       <div class="ai-buttons">
         <a href="https://discord.gg/fgDnGahS" class="ai-button">Rejoindre le Discord</a>
         <button class="ai-button" onclick="scrollToSection('boutique')">Découvrir la boutique</button>
-      </div>
+        function changeMessage(message) {
+  const bubble = document.getElementById('aiSpeechBubble');
+  bubble.innerHTML = `<p>${message}</p>`;
+}
+
+     </div>
     </div>
   </section>
 
