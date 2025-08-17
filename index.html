@@ -174,26 +174,27 @@
   }
 
   // Générer une réponse de l'IA
-  function getBotResponse(userMessage) {
-    const lowerCaseMessage = userMessage.toLowerCase();
+function getBotResponse(userMessage) {
+  const lowerCaseMessage = userMessage.toLowerCase();
 
-    if (lowerCaseMessage.includes('discord'))
-      return "Tu peux rejoindre notre Discord ici : <a href='https://discord.gg/fgDnGahS' target='_blank'>Rejoindre le Discord</a> !";
+  if (lowerCaseMessage.includes('discord'))
+    return "Tu peux rejoindre notre Discord ici : <a href='https://discord.gg/fgDnGahS' target='_blank'>Rejoindre le Discord</a> !";
 
-    if (lowerCaseMessage.includes('ip'))
-      return "L'IP du serveur est : hyperionrp.aternos.me. Tu peux la copier en cliquant sur le bouton 'Copier l'IP' en haut de la page !";
+  if (lowerCaseMessage.includes('ip'))
+    return "L'IP du serveur est : hyperionrp.aternos.me. Tu peux la copier en cliquant sur le bouton 'Copier l'IP' en haut de la page !";
 
-    if (lowerCaseMessage.includes('boutique'))
-      return "Notre boutique propose des grades VIP, des kits de départ et plus encore ! Fais défiler vers le bas pour la découvrir.";
+  if (lowerCaseMessage.includes('boutique'))
+    return "Notre boutique propose des grades VIP, des kits de départ et plus encore ! Fais défiler vers le bas pour la découvrir.";
 
-    if (lowerCaseMessage.includes('recrutement'))
-      return "Pour rejoindre le staff, remplis le formulaire dans la section 'Recrutement' !";
+  if (lowerCaseMessage.includes('recrutement'))
+    return "Pour rejoindre le staff, remplis le formulaire dans la section 'Recrutement' !";
 
-    if (lowerCaseMessage.includes('bonjour') || lowerCaseMessage.includes('salut') || lowerCaseMessage.includes('hello'))
-      return "Bonjour ! Je suis l'assistante virtuelle de HyperionRP. Comment puis-je t'aider ? 😊";
+  if (lowerCaseMessage.includes('bonjour') || lowerCaseMessage.includes('salut') || lowerCaseMessage.includes('hello'))
+    return "Bonjour ! Je suis l'assistante virtuelle de HyperionRP. Comment puis-je t'aider ? 😊";
 
-    return "Désolée, je n'ai pas compris ta question. Voici quelques sujets que je peux aborder : Discord, IP, boutique, recrutement.";
-  }
+  // Si l'IA ne comprend pas, elle transfère vers un conseiller
+  return "Désolée, je ne peux pas répondre à cette question. Je vais te transférer vers un conseiller humain. <br><br> Tu peux contacter notre équipe sur Discord : <a href='https://discord.gg/fgDnGahS' target='_blank'>Rejoindre le Discord</a>.";
+}
 </script>
 </body>
 </html>
