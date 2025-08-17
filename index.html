@@ -13,6 +13,7 @@
     <a href="#staff">👑 Staff</a>
     <a href="#boutique">🛍️ Boutique</a>
     <a href="#recrutement">📋 Recrutement</a>
+    <a href="#" onclick="toggleCart()">🛒 Panier (<span id="cartCount">0</span>)</a>
   </nav>
 
   <!-- En-tête avec bannière -->
@@ -61,25 +62,25 @@
         <h3>Grade VIP</h3>
         <p>Accès à des privilèges exclusifs, salon Discord privé, effets cosmiques.</p>
         <span class="prix">4.99€</span>
-        <a href="#" class="bouton-achat">Acheter</a>
+        <button class="bouton-achat" onclick="addToCart('Grade VIP', 4.99)">Ajouter au panier</button>
       </div>
       <div class="carte-produit">
         <h3>Kit de départ</h3>
         <p>Tout ce qu’il faut pour bien commencer l’aventure RP !</p>
         <span class="prix">2.50€</span>
-        <a href="#" class="bouton-achat">Acheter</a>
+        <button class="bouton-achat" onclick="addToCart('Kit de départ', 2.50)">Ajouter au panier</button>
       </div>
       <div class="carte-produit">
         <h3>Achat d’argent virtuel</h3>
         <p>Obtiens de la monnaie en jeu pour acheter des items exclusifs.</p>
         <span class="prix">5.00€</span>
-        <a href="#" class="bouton-achat">Acheter</a>
+        <button class="bouton-achat" onclick="addToCart('Achat d’argent virtuel', 5.00)">Ajouter au panier</button>
       </div>
       <div class="carte-produit">
         <h3>Don Libre</h3>
         <p>Soutiens le serveur et la communauté !</p>
         <span class="prix">Montant libre</span>
-        <a href="#" class="bouton-achat">Acheter</a>
+        <button class="bouton-achat" onclick="addDonationToCart()">Ajouter au panier</button>
       </div>
     </div>
     <p class="avertissement">⚠️ Avertissement : les dons libres ne sont pas remboursables.</p>
@@ -90,7 +91,7 @@
     <h2>📋 Recrutement Staff HyperionRP</h2>
     <p>Remplis ce formulaire Google si tu souhaites rejoindre notre équipe !</p>
     <iframe
-      src="https://docs.google.com/forms/d/e/1FAIpQLSd_G31T1QBmN78fRH3gLPIFprGu36g5Vm8fdS_AHsXeyUdUeg/viewform?embedded=true"
+      src="https://docs.google.com/forms/d/e/1FAIpQLSd0tjBIEp6ueYezQ7LC1IHAqzvfq0eHZCj10jJRLdlmlD5sUA/viewform?embedded=true"
       width="100%"
       height="800"
       frameborder="0"
@@ -99,6 +100,20 @@
       Chargement…
     </iframe>
   </section>
+
+  <!-- Panier -->
+  <div id="cartModal" class="cart-modal">
+    <div class="cart-modal-content">
+      <span class="cart-close" onclick="toggleCart()">&times;</span>
+      <h2>🛒 Mon Panier</h2>
+      <div id="cartItems" class="cart-items">
+        <!-- Les articles seront ajoutés ici dynamiquement -->
+      </div>
+      <div class="cart-total">
+        <p>Total : <span id="cartTotal">0.00€</span></p>
+      </div>
+    </div>
+  </div>
 
   <!-- Pied de page -->
   <footer>
@@ -111,6 +126,71 @@
     function copyIP() {
       navigator.clipboard.writeText("hyperionrp.aternos.me");
       alert("IP copiée : hyperionrp.aternos.me");
+    }
+
+    // Gestion du panier
+    let cart = [];
+
+    // Afficher/masquer le panier
+    function toggleCart() {
+      const cartModal = document.getElementById('cartModal');
+      cartModal.style.display = cartModal.style.display === 'block' ? 'none' : 'block';
+      updateCart();
+    }
+
+    // Ajouter un article au panier
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+    }
+
+    // Ajouter un don libre au panier
+    function addDonationToCart() {
+      const amount = prompt("Quel montant souhaitez-vous donner ? (en €)");
+      if (amount && !isNaN(amount) && amount > 0) {
+        cart.push({ name: "Don Libre", price: parseFloat(amount) });
+        updateCart();
+      } else {
+        alert("Veuillez entrer un montant valide.");
+      }
+    }
+
+    // Mettre à jour le panier
+    function updateCart() {
+      const cartItems = document.getElementById('cartItems');
+      const cartCount = document.getElementById('cartCount');
+      const cartTotal = document.getElementById('cartTotal');
+
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      cart.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `
+          <p><strong>${item.name}</strong> : ${item.price.toFixed(2)}€
+          <span class="remove-item" onclick="removeFromCart('${item.name}')">❌</span></p>
+        `;
+        cartItems.appendChild(itemDiv);
+        total += item.price;
+      });
+
+      cartCount.textContent = cart.length;
+      cartTotal.textContent = `${total.toFixed(2)}€`;
+    }
+
+    // Retirer un article du panier
+    function removeFromCart(name) {
+      cart = cart.filter(item => item.name !== name);
+      updateCart();
+    }
+
+    // Fermer le panier en cliquant à l'extérieur
+    window.onclick = function(event) {
+      const cartModal = document.getElementById('cartModal');
+      if (event.target === cartModal) {
+        cartModal.style.display = 'none';
+      }
     }
   </script>
 </body>
