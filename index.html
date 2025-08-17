@@ -25,24 +25,6 @@
       <a href="https://discord.gg/fgDnGahS" target="_blank"><button>💬 Rejoindre le Discord</button></a>
     </div>
   </header>
-  
-  <!-- Fenêtre de chat pour l'IA d'aide -->
-<div class="chat-container">
-  <div class="chat-header" onclick="toggleChat()">
-    <span>🤖 IA HyperionRP</span>
-  </div>
-  <div class="chat-box" id="chatBox">
-    <div class="chat-messages" id="chatMessages">
-      <div class="chat-bubble bot">
-        <p>Bonjour ! Je suis l'assistante virtuelle de HyperionRP. Comment puis-je t'aider aujourd'hui ? 😊</p>
-      </div>
-    </div>
-    <div class="chat-input">
-      <input type="text" id="userInput" placeholder="Pose ta question ici..." onkeypress="handleKeyPress(event)" />
-      <button onclick="sendMessage()">Envoyer</button>
-    </div>
-  </div>
-</div>
 
   <!-- Section Staff -->
   <section id="staff" class="staff-section">
@@ -108,7 +90,7 @@
     <h2>📋 Recrutement Staff HyperionRP</h2>
     <p>Remplis ce formulaire Google si tu souhaites rejoindre notre équipe !</p>
     <iframe
-      src="https://docs.google.com/forms/d/e/1FAIpQLSd_G31T1QBmN78fRH3gLPIFprGu36g5Vm8fdS_AHsXeyUdUeg/viewform?embedded=true"
+      src="https://docs.google.com/forms/d/e/1FAIpQLSd0tjBIEp6ueYezQ7LC1IHAqzvfq0eHZCj10jJRLdlmlD5sUA/viewform?embedded=true"
       width="100%"
       height="800"
       frameborder="0"
@@ -118,84 +100,97 @@
     </iframe>
   </section>
 
+  <!-- Fenêtre de chat pour l'IA d'aide -->
+  <div class="chat-container">
+    <div class="chat-header" onclick="toggleChat()">
+      <span>🤖 IA HyperionRP</span>
+    </div>
+    <div class="chat-box" id="chatBox">
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-bubble bot">
+          <p>Bonjour ! Je suis l'assistante virtuelle de HyperionRP. Comment puis-je t'aider aujourd'hui ? 😊</p>
+        </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Pose ta question ici..." onkeypress="handleKeyPress(event)" />
+        <button onclick="sendMessage()">Envoyer</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Pied de page -->
   <footer>
     <p>&copy; 2025 HyperionRP. Tous droits réservés.</p>
   </footer>
 
   <!-- Scripts -->
- <script>
-  // Copier l'IP
-  function copyIP() {
-    navigator.clipboard.writeText("hyperionrp.aternos.me");
-    alert("IP copiée : hyperionrp.aternos.me");
-  }
-
-  // Afficher/masquer la fenêtre de chat
-  function toggleChat() {
-    const chatBox = document.getElementById('chatBox');
-    if (chatBox.style.display === 'block') {
-      chatBox.style.display = 'none';
-    } else {
-      chatBox.style.display = 'block';
+  <script>
+    // Copier l'IP
+    function copyIP() {
+      navigator.clipboard.writeText("hyperionrp.aternos.me");
+      alert("IP copiée : hyperionrp.aternos.me");
     }
-  }
 
-  // Envoyer un message
-  function sendMessage() {
-    const userInput = document.getElementById('userInput');
-    const message = userInput.value.trim();
-    if (message === '') return;
-
-    addMessage(message, 'user');
-    userInput.value = '';
-
-    setTimeout(() => {
-      const botResponse = getBotResponse(message);
-      addMessage(botResponse, 'bot');
-    }, 500);
-  }
-
-  // Ajouter un message dans le chat
-  function addMessage(message, sender) {
-    const chatMessages = document.getElementById('chatMessages');
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `chat-bubble ${sender}`;
-    messageDiv.innerHTML = `<p>${message}</p>`;
-    chatMessages.appendChild(messageDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
-
-  // Gérer l'envoi avec la touche Entrée
-  function handleKeyPress(event) {
-    if (event.key === 'Enter') {
-      sendMessage();
+    // Afficher/masquer la fenêtre de chat
+    function toggleChat() {
+      const chatBox = document.getElementById('chatBox');
+      chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block';
     }
-  }
 
-  // Générer une réponse de l'IA
-function getBotResponse(userMessage) {
-  const lowerCaseMessage = userMessage.toLowerCase();
+    // Envoyer un message
+    function sendMessage() {
+      const userInput = document.getElementById('userInput');
+      const message = userInput.value.trim();
+      if (message === '') return;
 
-  if (lowerCaseMessage.includes('discord'))
-    return "Tu peux rejoindre notre Discord ici : <a href='https://discord.gg/fgDnGahS' target='_blank'>Rejoindre le Discord</a> !";
+      addMessage(message, 'user');
+      userInput.value = '';
 
-  if (lowerCaseMessage.includes('ip'))
-    return "L'IP du serveur est : hyperionrp.aternos.me. Tu peux la copier en cliquant sur le bouton 'Copier l'IP' en haut de la page !";
+      setTimeout(() => {
+        const botResponse = getBotResponse(message);
+        addMessage(botResponse, 'bot');
+      }, 500);
+    }
 
-  if (lowerCaseMessage.includes('boutique'))
-    return "Notre boutique propose des grades VIP, des kits de départ et plus encore ! Fais défiler vers le bas pour la découvrir.";
+    // Ajouter un message dans le chat
+    function addMessage(message, sender) {
+      const chatMessages = document.getElementById('chatMessages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `chat-bubble ${sender}`;
+      messageDiv.innerHTML = `<p>${message}</p>`;
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
 
-  if (lowerCaseMessage.includes('recrutement'))
-    return "Pour rejoindre le staff, remplis le formulaire dans la section 'Recrutement' !";
+    // Gérer l'envoi avec la touche Entrée
+    function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    }
 
-  if (lowerCaseMessage.includes('bonjour') || lowerCaseMessage.includes('salut') || lowerCaseMessage.includes('hello'))
-    return "Bonjour ! Je suis l'assistante virtuelle de HyperionRP. Comment puis-je t'aider ? 😊";
+    // Générer une réponse de l'IA
+    function getBotResponse(userMessage) {
+      const lowerCaseMessage = userMessage.toLowerCase();
 
-  // Si l'IA ne comprend pas, elle transfère vers un conseiller
-  return "Désolée, je ne peux pas répondre à cette question. Je vais te transférer vers un conseiller humain. <br><br> Tu peux contacter notre équipe sur Discord : <a href='https://discord.gg/fgDnGahS' target='_blank'>Rejoindre le Discord</a>.";
-}
-</script>
+      if (lowerCaseMessage.includes('discord'))
+        return "Tu peux rejoindre notre Discord ici : <a href='https://discord.gg/fgDnGahS' target='_blank'>Rejoindre le Discord</a> !";
+
+      if (lowerCaseMessage.includes('ip'))
+        return "L'IP du serveur est : hyperionrp.aternos.me. Tu peux la copier en cliquant sur le bouton 'Copier l'IP' en haut de la page !";
+
+      if (lowerCaseMessage.includes('boutique'))
+        return "Notre boutique propose des grades VIP, des kits de départ et plus encore ! Fais défiler vers le bas pour la découvrir.";
+
+      if (lowerCaseMessage.includes('recrutement'))
+        return "Pour rejoindre le staff, remplis le formulaire dans la section 'Recrutement' !";
+
+      if (lowerCaseMessage.includes('bonjour') || lowerCaseMessage.includes('salut') || lowerCaseMessage.includes('hello'))
+        return "Bonjour ! Je suis l'assistante virtuelle de HyperionRP. Comment puis-je t'aider ? 😊";
+
+      // Transfert vers un conseiller
+      return "Désolée, je ne peux pas répondre à cette question. Je vais te transférer vers un conseiller humain. <br><br> Tu peux contacter notre équipe sur Discord : <a href='https://discord.gg/fgDnGahS' target='_blank'>Rejoindre le Discord</a>.";
+    }
+  </script>
 </body>
 </html>
-
