@@ -134,7 +134,11 @@
     // Afficher/masquer la fenêtre de chat
     function toggleChat() {
       const chatBox = document.getElementById('chatBox');
-      chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block';
+      if (chatBox.style.display === 'block') {
+        chatBox.style.display = 'none';
+      } else {
+        chatBox.style.display = 'block';
+      }
     }
 
     // Envoyer un message
@@ -189,7 +193,7 @@
         return "Bonjour ! Je suis l'assistante virtuelle de HyperionRP. Comment puis-je t'aider ? 😊";
 
       // Transfert vers un conseiller
-      return "Désolée, je ne peux pas répondre à cette question. Je vais te transférer vers un conseiller humain. <br><br> Tu peux contacter notre équipe sur Discord : <a href='https://discord.gg/fgDnGahS' target='_blank'>Rejoindre le Discord</a>.";
+      return "Désolée, je ne peux pas répondre à cette question. mais tu peut parler conseiller humain. <br><br> Tu peux contacter notre équipe sur Discord : <a href='https://discord.gg/U9T8nUBuyh' target='_blank'>Rejoindre le Discord</a>.";
     }
   </script>
 </body>
