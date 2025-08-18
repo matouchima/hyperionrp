@@ -112,8 +112,10 @@
       <div class="cart-total">
         <p>Total : <span id="cartTotal">0.00€</span></p>
       </div>
-      <!-- Bouton de paiement PayPal -->
-      <div id="paypal-button-container" style="margin-top: 20px;"></div>
+      <div class="cart-instructions">
+        <p>Pour finaliser ton achat, contacte-nous sur Discord avec les détails de ton panier.</p>
+        <a href="https://discord.gg/fgDnGahS" target="_blank" class="contact-button">💬 Nous contacter sur Discord</a>
+      </div>
     </div>
   </div>
 
@@ -227,39 +229,5 @@
       }
     }
   </script>
-
-  <!-- Script PayPal -->
-<script src="https://www.paypal.com/sdk/js?client-id=AagYX5qRbcqsl-WFO2ugax6S4XXAdHIp83EKOrInXweo1DHcFb_etbo1jFK_eE8GUWjTvD3maBvtjb32&currency=EUR"></script>
-<script>
-  // Remplace TON_CLIENT_ID par ton identifiant client PayPal
-  paypal.Buttons({
-    createOrder: function(data, actions) {
-      const totalElement = document.getElementById('cartTotal');
-      const total = parseFloat(totalElement.textContent.replace('€', ''));
-
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: total.toFixed(2)
-          }
-        }]
-      });
-    },
-    onApprove: function(data, actions) {
-      return actions.order.capture().then(function(details) {
-        alert('Paiement réussi ! Merci pour ton achat.');
-        cart = []; // Vider le panier après paiement
-        updateCart();
-      });
-    },
-    onCancel: function(data) {
-      alert('Paiement annulé.');
-    },
-    onError: function(err) {
-      console.error('Erreur PayPal:', err);
-      alert('Une erreur est survenue lors du paiement.');
-    }
-  }).render('#paypal-button-container');
-</script>
 </body>
 </html>
