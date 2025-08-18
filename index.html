@@ -2,9 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HyperionRP - Serveur Minecraft</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body id="accueil">
@@ -16,7 +15,7 @@
     <a href="#boutique">🛍️ Boutique</a>
     <a href="#status">🟢 Statut</a>
     <a href="#recrutement">📋 Recrutement</a>
-    <a href="panier.html" class="btn-panier">🛒 Voir le panier</a>
+    <a href="panier.html" class="btn-panier">🛒 Panier <span id="cart-count" class="cart-badge">0</span></a>
   </nav>
 
   <header>
@@ -110,24 +109,48 @@
   </footer>
 
   <script>
-    function copyIP() {
-      navigator.clipboard.writeText("hyperionrp.aternos.me");
-      alert("IP copiée : hyperionrp.aternos.me");
+    // ==== Panier utilitaires ====
+    function getPanier() {
+      try { return JSON.parse(localStorage.getItem('panier') || '[]'); }
+      catch(e){ return []; }
     }
-
-    // Panier avec stockage local
-    let panier = JSON.parse(localStorage.getItem('panier') || '[]');
+    function savePanier(p) {
+      localStorage.setItem('panier', JSON.stringify(p));
+      updateCartCount();
+    }
+    function updateCartCount() {
+      const p = getPanier();
+      const count = p.reduce((s, it) => s + (it.quantite || 1), 0);
+      const badge = document.getElementById('cart-count');
+      if (badge) badge.textContent = count;
+    }
+    document.addEventListener('DOMContentLoaded', updateCartCount);
 
     function ajouterAuPanier(nom, prix, isDonLibre) {
+      let p = getPanier();
       if (isDonLibre) {
         let montant = prompt("Quel montant souhaitez-vous donner ? (en €)", "5");
         if (!montant) return;
         montant = parseFloat(montant.replace(',', '.'));
         if (isNaN(montant) || montant <= 0) return;
         prix = montant;
+        p.push({ nom, prix, quantite: 1, don: true });
+      } else {
+        const idx = p.findIndex(item => item.nom === nom && !item.don && Number(item.prix) === Number(prix));
+        if (idx !== -1) {
+          p[idx].quantite = (p[idx].quantite || 1) + 1;
+        } else {
+          p.push({ nom, prix, quantite: 1 });
+        }
       }
-      panier.push({ nom, prix, quantite: 1 });
-      localStorage.setItem('panier', JSON.stringify(panier));
+      savePanier(p);
+      return false;
+    }
+
+    // ==== Divers ====
+    function copyIP() {
+      navigator.clipboard.writeText("hyperionrp.aternos.me");
+      alert("IP copiée : hyperionrp.aternos.me");
     }
 
     // Statut serveur
