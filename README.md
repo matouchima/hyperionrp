@@ -1,2 +1,1 @@
-url site 
-https://matouchima.github.io/hyperionrp
+url site: https://matouchima.github.io/hyperionrp
