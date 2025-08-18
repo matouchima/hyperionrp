@@ -33,6 +33,35 @@ body {
   font-weight: 600;
   transition: color 0.3s, transform 0.2s;
 }
+
+/* Effet soulignement animé sur le menu */
+.nav-fixe a {
+  position: relative;
+  text-decoration: none;
+  color: #f5f5f5;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav-fixe a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #2ecc71;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-fixe a:hover {
+  color: #2ecc71;
+}
+
+.nav-fixe a:hover::after {
+  width: 100%;
+}
+
 .nav-fixe a:hover { 
   color: #2ecc71;
   transform: translateY(-2px);
