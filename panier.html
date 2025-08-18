@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panier — HyperionRP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="panier-page">
+    <h1>🛒 Votre Panier</h1>
+    <ul id="liste"></ul>
+    <div class="total" id="total">Total : 0.00 €</div>
+    <div>
+      <button id="vider">Vider le panier</button>
+      <button id="payer">Payer (factice)</button>
+      <a href="index.html#boutique" class="btn-retour">← Continuer les achats</a>
+    </div>
+  </div>
+
+  <script>
+    function getPanier(){ try { return JSON.parse(localStorage.getItem('panier')||'[]'); } catch(e){ return []; } }
+    function savePanier(p){ localStorage.setItem('panier', JSON.stringify(p)); render(); }
+
+    function render(){
+      const ul = document.getElementById('liste');
+      const p = getPanier();
+      ul.innerHTML = '';
+      let total = 0;
+      p.forEach((it, i) => {
+        const li = document.createElement('li');
+        const prix = Number(it.prix)||0;
+        const q = Number(it.quantite||1);
+        total += prix * q;
+        li.innerHTML = `
+          <div><strong>${it.nom}</strong> ${it.don ? '(Don libre)' : ''}<br><small>${prix.toFixed(2)} €</small></div>
+          <div class="qte">
+            <button data-act="minus" data-i="${i}">−</button>
+            <span>${q}</span>
+            <button data-act="plus" data-i="${i}">+</button>
+          </div>
+          <div>${(prix*q).toFixed(2)} €</div>
+          <div><button data-act="del" data-i="${i}" class="ghost">🗑️</button></div>`;
+        ul.appendChild(li);
+      });
+      document.getElementById('total').textContent = 'Total : ' + total.toFixed(2) + ' €';
+    }
+
+    document.getElementById('liste').addEventListener('click', (e)=>{
+      const btn = e.target.closest('button'); if(!btn) return;
+      const i = Number(btn.dataset.i); const act = btn.dataset.act;
+      let p = getPanier();
+      if(act==='plus'){ p[i].quantite = (p[i].quantite||1) + 1; }
+      if(act==='minus'){ p[i].quantite = Math.max(1, (p[i].quantite||1) - 1); }
+      if(act==='del'){ p.splice(i,1); }
+      savePanier(p);
+    });
+
+    document.getElementById('vider').onclick = ()=>{ savePanier([]); };
+    document.getElementById('payer').onclick = ()=>{
+      const p = getPanier();
+      if(!p.length){ alert('Votre panier est vide.'); return; }
+      alert('Paiement factice : merci pour votre soutien à HyperionRP !');
+      savePanier([]);
+    };
+
+    render();
+  </script>
+</body>
+</html>
