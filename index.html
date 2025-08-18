@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HyperionRP - Serveur Minecraft</title>
- <link rel="icon" type="image/favicon.ico">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body id="accueil">
 
@@ -32,22 +32,22 @@
   <section id="staff" class="staff-section">
     <h2>👑 L'Équipe HyperionRP</h2>
     <div class="staff-cards">
-      <div class="staff-card">
+      <div class="staff-card scroll-animate">
         <img src="https://mc-heads.net/avatar/mz_dragon" alt="mz_dragon">
         <h3>mz_dragon <span class="badge">Gérant Staff</span></h3>
         <p>Responsable de la gestion et de l'organisation du serveur.</p>
       </div>
-      <div class="staff-card">
+      <div class="staff-card scroll-animate">
         <img src="https://mc-heads.net/avatar/tatane" alt="tatane">
         <h3>tatane <span class="badge">Aide Développeur</span></h3>
         <p>Assiste dans le développement et les correctifs techniques.</p>
       </div>
-      <div class="staff-card">
+      <div class="staff-card scroll-animate">
         <img src="https://mc-heads.net/avatar/le%20chat%20fumeur" alt="le chat fumeur">
         <h3>le chat fumeur <span class="badge">Aide Développeur</span></h3>
         <p>Apporte son soutien dans la configuration et les scripts RP.</p>
       </div>
-      <div class="staff-card">
+      <div class="staff-card scroll-animate">
         <img src="https://mc-heads.net/avatar/matouchima" alt="matouchima">
         <h3>matouchima <span class="badge">Grand Fondateur</span></h3>
         <p>Créateur principal du projet HyperionRP.</p>
@@ -59,27 +59,27 @@
   <section id="boutique" class="boutique">
     <h2>🌟 Boutique HyperionRP</h2>
     <div class="produits">
-      <div class="carte-produit">
+      <div class="carte-produit scroll-animate">
         <h3>Grade VIP</h3>
         <p>Accès à des privilèges exclusifs, salon Discord privé, effets cosmiques.</p>
         <span class="prix">4.99€</span>
         <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Grade VIP', 4.99, false); return false;">Ajouter au panier</a>
       </div>
-      <div class="carte-produit">
+      <div class="carte-produit scroll-animate">
         <h3>Kit de départ</h3>
-        <p>Tout ce qu’il faut pour bien commencer l’aventure RP !</p>
+        <p>Tout ce qu’il faut pour bien commencer l’aventure RP !</p>
         <span class="prix">2.50€</span>
         <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Kit de départ', 2.50, false); return false;">Ajouter au panier</a>
       </div>
-      <div class="carte-produit">
+      <div class="carte-produit scroll-animate">
         <h3>Achat d’argent virtuel</h3>
         <p>Obtiens de la monnaie en jeu pour acheter des items exclusifs.</p>
         <span class="prix">5.00€</span>
         <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Achat d’argent virtuel', 5.00, false); return false;">Ajouter au panier</a>
       </div>
-      <div class="carte-produit">
+      <div class="carte-produit scroll-animate">
         <h3>Don Libre</h3>
-        <p>Soutiens le serveur et la communauté !</p>
+        <p>Soutiens le serveur et la communauté !</p>
         <span class="prix">Montant libre</span>
         <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Don Libre', 0, true); return false;">Ajouter au panier</a>
       </div>
@@ -88,13 +88,13 @@
   </section>
 
   <!-- Section Statut du serveur -->
-  <section id="status" class="status-section">
+  <section id="status" class="status-section scroll-zoom">
     <h2>🟢 Statut du Serveur</h2>
     <p id="server-status">Chargement du statut...</p>
   </section>
 
   <!-- Section Recrutement -->
-  <section id="recrutement" class="recrutement">
+  <section id="recrutement" class="recrutement scroll-zoom">
     <h2>📋 Recrutement Staff HyperionRP</h2>
     <p>Remplis ce formulaire Google si tu souhaites rejoindre notre équipe !</p>
 
@@ -170,6 +170,17 @@
     }
     fetchStatus();
     setInterval(fetchStatus, 30000);
+
+    // ==== Animations au scroll ====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll(".scroll-animate, .scroll-zoom").forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
