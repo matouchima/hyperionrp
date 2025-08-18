@@ -8,22 +8,17 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body id="accueil">
-  <!-- Barre utilisateur connecté -->
-  <div id="userBar" class="user-bar" style="display: none;">
-    <p>Connecté en tant que <span id="userDisplayName"></span> <a href="#" onclick="logout()">🔚 Déconnexion</a></p>
-  </div>
 
   <!-- Menu de navigation fixe -->
   <nav class="nav-fixe">
     <a href="#accueil">🏠 Accueil</a>
     <a href="#staff">👑 Staff</a>
     <a href="#boutique">🛍️ Boutique</a>
+    <a href="#status">🟢 Statut</a>
     <a href="#recrutement">📋 Recrutement</a>
-    <a href="#" onclick="toggleCart()">🛒 Panier (<span id="cartCount">0</span>)</a>
-    <a href="#connexion" id="loginLink">👤 Connexion</a>
+    <a href="panier.html" class="btn-panier">🛒 Voir le panier</a>
   </nav>
 
-  <!-- En-tête avec bannière -->
   <header>
     <img src="banniere.png" alt="Bannière HyperionRP" class="banner" />
     <h1>HyperionRP</h1>
@@ -34,54 +29,10 @@
     </div>
   </header>
 
-  <!-- Section Connexion -->
-  <section id="connexion" class="connexion-section" style="display: none;">
-    <div class="connexion-container">
-      <h2>👤 Connexion</h2>
-      <form id="loginForm" onsubmit="handleLogin(event)">
-        <div class="form-group">
-          <label for="username">Pseudo Minecraft</label>
-          <input type="text" id="username" placeholder="Ton pseudo Minecraft" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Mot de passe</label>
-          <input type="password" id="password" placeholder="Ton mot de passe" required>
-        </div>
-        <button type="submit" class="login-button">Se connecter</button>
-        <p class="register-link">Pas encore de compte ? <a href="#" onclick="showRegister()">S'inscrire</a></p>
-      </form>
-    </div>
-
-    <div class="connexion-container" style="display: none;" id="registerContainer">
-      <h2>📝 Inscription</h2>
-      <form id="registerForm" onsubmit="handleRegister(event)">
-        <div class="form-group">
-          <label for="newUsername">Pseudo Minecraft</label>
-          <input type="text" id="newUsername" placeholder="Ton pseudo Minecraft" required>
-        </div>
-        <div class="form-group">
-          <label for="newPassword">Mot de passe</label>
-          <input type="password" id="newPassword" placeholder="Ton mot de passe" required>
-        </div>
-        <div class="form-group">
-          <label for="confirmPassword">Confirmer le mot de passe</label>
-          <input type="password" id="confirmPassword" placeholder="Confirme ton mot de passe" required>
-        </div>
-        <button type="submit" class="login-button">S'inscrire</button>
-        <p class="register-link">Déjà un compte ? <a href="#" onclick="showLogin()">Se connecter</a></p>
-      </form>
-    </div>
-  </section>
-
   <!-- Section Staff -->
   <section id="staff" class="staff-section">
     <h2>👑 L'Équipe HyperionRP</h2>
     <div class="staff-cards">
-      <div class="staff-card">
-        <img src="https://mc-heads.net/avatar/matouchima" alt="matouchima">
-        <h3>matouchima <span class="badge badge-fondateur">Grand Fondateur</span></h3>
-        <p>Créateur du projet HyperionRP, garant de la vision et du développement global.</p>
-      </div>
       <div class="staff-card">
         <img src="https://mc-heads.net/avatar/mz_dragon" alt="mz_dragon">
         <h3>mz_dragon <span class="badge">Gérant Staff</span></h3>
@@ -97,296 +48,105 @@
         <h3>le chat fumeur <span class="badge">Aide Développeur</span></h3>
         <p>Apporte son soutien dans la configuration et les scripts RP.</p>
       </div>
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/matouchima" alt="matouchima">
+        <h3>matouchima <span class="badge">Grand Fondateur</span></h3>
+        <p>Créateur principal du projet HyperionRP.</p>
+      </div>
     </div>
   </section>
 
   <!-- Section Boutique -->
   <section id="boutique" class="boutique">
-    <div class="login-required" id="loginRequiredMessage" style="display: none;">
-      <p>Tu dois être connecté pour accéder à la boutique.</p>
-      <button onclick="showLogin()">Se connecter</button>
-    </div>
     <h2>🌟 Boutique HyperionRP</h2>
     <div class="produits">
       <div class="carte-produit">
         <h3>Grade VIP</h3>
         <p>Accès à des privilèges exclusifs, salon Discord privé, effets cosmiques.</p>
         <span class="prix">4.99€</span>
-        <button class="bouton-achat" onclick="addToCart('Grade VIP', 4.99)">Ajouter au panier</button>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Grade VIP', 4.99, false); return false;">Ajouter au panier</a>
       </div>
       <div class="carte-produit">
         <h3>Kit de départ</h3>
         <p>Tout ce qu’il faut pour bien commencer l’aventure RP !</p>
         <span class="prix">2.50€</span>
-        <button class="bouton-achat" onclick="addToCart('Kit de départ', 2.50)">Ajouter au panier</button>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Kit de départ', 2.50, false); return false;">Ajouter au panier</a>
       </div>
       <div class="carte-produit">
         <h3>Achat d’argent virtuel</h3>
         <p>Obtiens de la monnaie en jeu pour acheter des items exclusifs.</p>
         <span class="prix">5.00€</span>
-        <button class="bouton-achat" onclick="addToCart('Achat d’argent virtuel', 5.00)">Ajouter au panier</button>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Achat d’argent virtuel', 5.00, false); return false;">Ajouter au panier</a>
       </div>
       <div class="carte-produit">
         <h3>Don Libre</h3>
         <p>Soutiens le serveur et la communauté !</p>
         <span class="prix">Montant libre</span>
-        <button class="bouton-achat" onclick="addDonationToCart()">Ajouter au panier</button>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Don Libre', 0, true); return false;">Ajouter au panier</a>
       </div>
     </div>
     <p class="avertissement">⚠️ Avertissement : les dons libres ne sont pas remboursables.</p>
+  </section>
+
+  <!-- Section Statut du serveur -->
+  <section id="status" class="status-section">
+    <h2>🟢 Statut du Serveur</h2>
+    <p id="server-status">Chargement du statut...</p>
   </section>
 
   <!-- Section Recrutement -->
   <section id="recrutement" class="recrutement">
     <h2>📋 Recrutement Staff HyperionRP</h2>
     <p>Remplis ce formulaire Google si tu souhaites rejoindre notre équipe !</p>
-    <iframe
-      src="https://docs.google.com/forms/d/e/1FAIpQLSd0tjBIEp6ueYezQ7LC1IHAqzvfq0eHZCj10jJRLdlmlD5sUA/viewform?embedded=true"
-      width="100%"
-      height="800"
-      frameborder="0"
-      marginheight="0"
-      marginwidth="0">
+
+    <iframe src="https://docs.google.com/forms/d/e/TON-LIEN/viewform?embedded=true"
+            width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">
       Chargement…
     </iframe>
   </section>
 
-  <!-- Panier -->
-  <div id="cartModal" class="cart-modal">
-    <div class="cart-modal-content">
-      <span class="cart-close" onclick="toggleCart()">&times;</span>
-      <h2>🛒 Mon Panier</h2>
-      <div id="cartItems" class="cart-items">
-        <!-- Les articles seront ajoutés ici dynamiquement -->
-      </div>
-      <div class="cart-total">
-        <p>Total : <span id="cartTotal">0.00€</span></p>
-      </div>
-      <div class="cart-instructions">
-        <p>Pour finaliser ton achat, fais une <strong>capture d'écran</strong> ou une <strong>photo</strong> de ton panier et envoie-la sur le canal <strong>#boutique</strong> de notre Discord.</p>
-        <a href="https://discord.gg/fgDnGahS" target="_blank" class="contact-button">💬 Rejoindre le Discord</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Pied de page -->
   <footer>
     <p>&copy; 2025 HyperionRP. Tous droits réservés.</p>
   </footer>
 
-  <!-- Scripts -->
   <script>
-    // Copier l'IP
     function copyIP() {
       navigator.clipboard.writeText("hyperionrp.aternos.me");
       alert("IP copiée : hyperionrp.aternos.me");
     }
 
-    // Gestion du panier
-    let cart = [];
+    // Panier avec stockage local
+    let panier = JSON.parse(localStorage.getItem('panier') || '[]');
 
-    // Afficher/masquer le panier
-    function toggleCart() {
-      const cartModal = document.getElementById('cartModal');
-      cartModal.style.display = cartModal.style.display === 'block' ? 'none' : 'block';
-      updateCart();
+    function ajouterAuPanier(nom, prix, isDonLibre) {
+      if (isDonLibre) {
+        let montant = prompt("Quel montant souhaitez-vous donner ? (en €)", "5");
+        if (!montant) return;
+        montant = parseFloat(montant.replace(',', '.'));
+        if (isNaN(montant) || montant <= 0) return;
+        prix = montant;
+      }
+      panier.push({ nom, prix, quantite: 1 });
+      localStorage.setItem('panier', JSON.stringify(panier));
     }
 
-    // Ajouter un article au panier
-    function addToCart(name, price) {
-      if (!currentUser) {
-        alert("Tu dois être connecté pour ajouter des articles au panier.");
-        showLogin();
-        return;
-      }
-
-      const existingItem = cart.find(item => item.name === name);
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        cart.push({ name, price, quantity: 1 });
-      }
-      updateCart();
-    }
-
-    // Ajouter un don libre au panier
-    function addDonationToCart() {
-      if (!currentUser) {
-        alert("Tu dois être connecté pour ajouter des articles au panier.");
-        showLogin();
-        return;
-      }
-
-      const amount = prompt("Quel montant souhaitez-vous donner ? (en €)");
-      if (amount && !isNaN(amount) && amount > 0) {
-        const existingDonation = cart.find(item => item.name === "Don Libre");
-        if (existingDonation) {
-          existingDonation.price += parseFloat(amount);
+    // Statut serveur
+    async function fetchStatus() {
+      try {
+        const res = await fetch("https://api.mcsrvstat.us/2/hyperionrp.aternos.me");
+        const data = await res.json();
+        if (data.online) {
+          document.getElementById("server-status").innerText =
+            `✅ En ligne — ${data.players.online}/${data.players.max} joueurs connectés`;
         } else {
-          cart.push({ name: "Don Libre", price: parseFloat(amount), quantity: 1 });
+          document.getElementById("server-status").innerText = "❌ Serveur hors-ligne";
         }
-        updateCart();
-      } else {
-        alert("Veuillez entrer un montant valide.");
+      } catch (e) {
+        document.getElementById("server-status").innerText = "⚠️ Impossible de récupérer le statut";
       }
     }
-
-    // Mettre à jour le panier
-    function updateCart() {
-      const cartItems = document.getElementById('cartItems');
-      const cartCount = document.getElementById('cartCount');
-      const cartTotal = document.getElementById('cartTotal');
-
-      cartItems.innerHTML = '';
-      let total = 0;
-      let totalItems = 0;
-
-      cart.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'cart-item';
-        itemDiv.innerHTML = `
-          <div class="item-info">
-            <p><strong>${item.name}</strong> : ${item.price.toFixed(2)}€</p>
-            <div class="item-quantity">
-              <button onclick="changeQuantity('${item.name}', -1)">-</button>
-              <span>${item.quantity}</span>
-              <button onclick="changeQuantity('${item.name}', 1)">+</button>
-            </div>
-          </div>
-          <span class="item-total">${(item.price * item.quantity).toFixed(2)}€</span>
-          <span class="remove-item" onclick="removeFromCart('${item.name}')">❌</span>
-        `;
-        cartItems.appendChild(itemDiv);
-        total += item.price * item.quantity;
-        totalItems += item.quantity;
-      });
-
-      cartCount.textContent = totalItems;
-      cartTotal.textContent = `${total.toFixed(2)}€`;
-    }
-
-    // Changer la quantité d'un article
-    function changeQuantity(name, change) {
-      const item = cart.find(item => item.name === name);
-      if (item) {
-        item.quantity += change;
-        if (item.quantity <= 0) {
-          cart = cart.filter(item => item.name !== name);
-        }
-        updateCart();
-      }
-    }
-
-    // Retirer un article du panier
-    function removeFromCart(name) {
-      cart = cart.filter(item => item.name !== name);
-      updateCart();
-    }
-
-    // Fermer le panier en cliquant à l'extérieur
-    window.onclick = function(event) {
-      const cartModal = document.getElementById('cartModal');
-      if (event.target === cartModal) {
-        cartModal.style.display = 'none';
-      }
-    }
-
-    // Gestion de la connexion
-    let currentUser = null;
-
-    // Afficher la section de connexion
-    function showLogin() {
-      document.getElementById('connexion').style.display = 'flex';
-      document.querySelector('.connexion-container').style.display = 'block';
-      document.getElementById('registerContainer').style.display = 'none';
-    }
-
-    // Afficher la section d'inscription
-    function showRegister() {
-      document.getElementById('connexion').style.display = 'flex';
-      document.querySelector('.connexion-container').style.display = 'none';
-      document.getElementById('registerContainer').style.display = 'block';
-    }
-
-    // Gérer la connexion
-    function handleLogin(event) {
-      event.preventDefault();
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-
-      if (username && password) {
-        currentUser = { username: username };
-        alert(`Bienvenue, ${username} !`);
-        updateUserBar(username);
-        checkLoginStatus();
-      } else {
-        alert("Veuillez remplir tous les champs.");
-      }
-    }
-
-    // Gérer l'inscription
-    function handleRegister(event) {
-      event.preventDefault();
-      const username = document.getElementById('newUsername').value;
-      const password = document.getElementById('newPassword').value;
-      const confirmPassword = document.getElementById('confirmPassword').value;
-
-      if (username && password && confirmPassword) {
-        if (password === confirmPassword) {
-          alert(`Compte créé avec succès pour ${username} !`);
-          showLogin();
-        } else {
-          alert("Les mots de passe ne correspondent pas.");
-        }
-      } else {
-        alert("Veuillez remplir tous les champs.");
-      }
-    }
-
-    // Mettre à jour la barre utilisateur et vérifier les sections sensibles
-    function updateUserBar(username) {
-      const userBar = document.getElementById('userBar');
-      const loginLink = document.getElementById('loginLink');
-      const userDisplayName = document.getElementById('userDisplayName');
-
-      userDisplayName.textContent = username;
-      userBar.style.display = 'block';
-      loginLink.style.display = 'none';
-
-      checkLoginStatus();
-    }
-
-    // Vérifier le statut de connexion
-    function checkLoginStatus() {
-      if (!currentUser) {
-        document.getElementById('loginRequiredMessage').style.display = 'block';
-        document.querySelector('.produits').style.display = 'none';
-        document.querySelector('.boutique h2').style.display = 'none';
-      } else {
-        document.getElementById('loginRequiredMessage').style.display = 'none';
-        document.querySelector('.produits').style.display = 'flex';
-        document.querySelector('.boutique h2').style.display = 'block';
-      }
-    }
-
-    // Déconnexion
-    function logout() {
-      currentUser = null;
-      const userBar = document.getElementById('userBar');
-      const loginLink = document.getElementById('loginLink');
-
-      userBar.style.display = 'none';
-      loginLink.style.display = 'block';
-
-      checkLoginStatus();
-
-      alert("Tu es maintenant déconnecté.");
-    }
-
-    // Vérifier la connexion au chargement de la page
-    document.addEventListener('DOMContentLoaded', function() {
-      checkLoginStatus();
-    });
+    fetchStatus();
+    setInterval(fetchStatus, 30000);
   </script>
 </body>
 </html>
