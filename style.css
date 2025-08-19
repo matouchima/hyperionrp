@@ -246,3 +246,14 @@ footer {
     max-height: 220px;
   }
 }
+.map-section {
+  padding: 2em;
+  background: #121212;
+  text-align: center;
+  color: #f5f5f5;
+}
+
+.map-section h1 {
+  margin-bottom: 1em;
+  color: #2ecc71;
+}
