@@ -21,6 +21,7 @@
     <a href="#status">🟢 Statut</a>
     <a href="#recrutement">📋 Recrutement</a>
     <a href="panier.html" class="btn-panier">🛒 Panier <span id="cart-count" class="cart-badge">0</span></a>
+    <a href="#mapdelaville">🗺️map de la ville</a>
   </nav>
 
   <header>
@@ -108,11 +109,18 @@
       Chargement…
     </iframe>
   </section>
+  
+      <section id="mapdelaville" class="mapdelaville">
+    <h1> 🗺️map de la ville </h1>
 
-  <footer>
+  <!-- Intégration de la carte BlueMap avec iframe -->
+  <div class="content">
+    <iframe src="map/index.html"></iframe>
+  
+    <footer>
     <p>&copy; 2025 HyperionRP. Tous droits réservés.</p>
   </footer>
-
+    
   <script>
     // ==== Panier utilitaires ====
     function getPanier() {
@@ -176,13 +184,6 @@
     fetchStatus();
     setInterval(fetchStatus, 30000);
 
-    <h1>Carte du serveur</h1>
-
-  <!-- Intégration de la carte BlueMap avec iframe -->
-  <div class="content">
-    <iframe src="map/index.html"></iframe>
-  </div>
-    
     // ==== Animations au scroll ====
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
