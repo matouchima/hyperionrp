@@ -246,14 +246,17 @@ footer {
     max-height: 220px;
   }
 }
-.map-section {
-  padding: 2em;
-  background: #121212;
-  text-align: center;
-  color: #f5f5f5;
+
+/* Animation fade-in pour la carte */
+.map-section iframe {
+  opacity: 0;
+  transform: scale(0.98);
+  animation: fadeInMap 1s ease-out forwards;
 }
 
-.map-section h1 {
-  margin-bottom: 1em;
-  color: #2ecc71;
+@keyframes fadeInMap {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
