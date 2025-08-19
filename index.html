@@ -176,6 +176,13 @@
     fetchStatus();
     setInterval(fetchStatus, 30000);
 
+    <h1>Carte du serveur</h1>
+
+  <!-- Intégration de la carte BlueMap avec iframe -->
+  <div class="content">
+    <iframe src="map/index.html"></iframe>
+  </div>
+    
     // ==== Animations au scroll ====
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
