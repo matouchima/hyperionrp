@@ -4,11 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HyperionRP - Serveur Minecraft</title>
-  <link rel="icon" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body id="accueil">
+
+  <!-- Canvas arrière-plan animé -->
+  <canvas id="mc-background"></canvas>
 
   <!-- Menu de navigation fixe -->
   <nav class="nav-fixe">
@@ -35,11 +37,6 @@
     <h2>👑 L'Équipe HyperionRP</h2>
     <div class="staff-cards">
       <div class="staff-card scroll-animate">
-        <img src="https://mc-heads.net/avatar/matouchima" alt="matouchima">
-        <h3>matouchima <span class="badge">Grand Fondateur</span></h3>
-        <p>Créateur principal du projet HyperionRP.</p>
-      </div>
-      <div class="staff-card scroll-animate">
         <img src="https://mc-heads.net/avatar/mz_dragon" alt="mz_dragon">
         <h3>mz_dragon <span class="badge">Gérant Staff</span></h3>
         <p>Responsable de la gestion et de l'organisation du serveur.</p>
@@ -54,7 +51,12 @@
         <h3>le chat fumeur <span class="badge">Aide Développeur</span></h3>
         <p>Apporte son soutien dans la configuration et les scripts RP.</p>
       </div>
-     </div>
+      <div class="staff-card scroll-animate">
+        <img src="https://mc-heads.net/avatar/matouchima" alt="matouchima">
+        <h3>matouchima <span class="badge">Grand Fondateur</span></h3>
+        <p>Créateur principal du projet HyperionRP.</p>
+      </div>
+    </div>
   </section>
 
   <!-- Section Boutique -->
@@ -183,6 +185,56 @@
     }, { threshold: 0.2 });
 
     document.querySelectorAll(".scroll-animate, .scroll-zoom").forEach(el => observer.observe(el));
+
+    // ==== Arrière-plan blocs Minecraft ====
+    const canvas = document.getElementById('mc-background');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    const blockImages = [
+      "https://static.wikia.nocookie.net/minecraft_gamepedia/images/5/5f/Grass_Block_JE7_BE6.png",
+      "https://static.wikia.nocookie.net/minecraft_gamepedia/images/5/54/Stone_JE4.png",
+      "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/d7/Dirt_JE2_BE2.png"
+    ];
+
+    let blocks = [];
+    const blockCount = 20;
+
+    blockImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        for (let i = 0; i < blockCount; i++) {
+          blocks.push({
+            img: img,
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: 40 + Math.random() * 20,
+            speed: 0.3 + Math.random() * 0.7
+          });
+        }
+      };
+    });
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      blocks.forEach(b => {
+        ctx.drawImage(b.img, b.x, b.y, b.size, b.size);
+        b.y += b.speed;
+        if (b.y > canvas.height) {
+          b.y = -b.size;
+          b.x = Math.random() * canvas.width;
+        }
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
   </script>
 </body>
 </html>
