@@ -1,33 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-        <meta name="description"
-              content="BlueMap is a tool that generates 3D maps of your Minecraft worlds and displays them in your browser">
-        <meta name="version" content="5.11">
-        <meta name="keywords" content="bluemap, map, minecraft, minecraft map">
-        <meta name="theme-color" content="#006EDE">
-        <meta name="og:site_name" content="BlueMap">
-        <meta name="og:title" content="BlueMap">
-        <meta name="og:description"
-              content="BlueMap is a tool that generates 3D maps of your Minecraft worlds and displays them in your browser">
-        <meta name="og:type" content="website">
-        <meta name="og:image" content="https://avatars.githubusercontent.com/u/42522657?s=200&v=4">
-        <meta name="robots" content="index,nofollow">
-        <link rel="icon" href="./assets/favicon-DEN7TZ5X.png">
-        <link rel="manifest" href="./assets/manifest-Ciy5FJKl.webmanifest">
-        <title>BlueMap</title>
-      <script type="module" crossorigin src="./assets/index-DpEqQQM9.js"></script>
-      <link rel="stylesheet" crossorigin href="./assets/index-BgiqB2rB.css">
-    </head>
-    <body>
-        <noscript>
-            <strong>Sorry but BlueMap doesn't work without JavaScript enabled.
-                Please <a href="https://www.enable-javascript.com/">enable</a> it to continue.</strong>
-        </noscript>
-        <div id="map-container"></div>
-        <div id="app"></div>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HyperionRP - Serveur Minecraft</title>
+ <link rel="icon" type="image/favicon.ico">
+</head>
+<body id="accueil">
 
-    </body>
+  <!-- Menu de navigation fixe -->
+  <nav class="nav-fixe">
+    <a href="#accueil">🏠 Accueil</a>
+    <a href="#staff">👑 Staff</a>
+    <a href="#boutique">🛍️ Boutique</a>
+    <a href="#status">🟢 Statut</a>
+    <a href="#recrutement">📋 Recrutement</a>
+    <a href="panier.html" class="btn-panier">🛒 Panier <span id="cart-count" class="cart-badge">0</span></a>
+  </nav>
+
+  <header>
+    <img src="banniere.png" alt="Bannière HyperionRP" class="banner" />
+    <h1>HyperionRP</h1>
+    <p class="tagline">Plonge dans un monde où chaque joueur écrit sa propre histoire — bienvenue sur HyperionRP</p>
+    <div class="buttons">
+      <button onclick="copyIP()">📋 Copier l’IP</button>
+      <a href="https://discord.gg/fgDnGahS" target="_blank"><button>💬 Rejoindre le Discord</button></a>
+    </div>
+  </header>
+
+  <!-- Section Staff -->
+  <section id="staff" class="staff-section">
+    <h2>👑 L'Équipe HyperionRP</h2>
+    <div class="staff-cards">
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/mz_dragon" alt="mz_dragon">
+        <h3>mz_dragon <span class="badge">Gérant Staff</span></h3>
+        <p>Responsable de la gestion et de l'organisation du serveur.</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/tatane" alt="tatane">
+        <h3>tatane <span class="badge">Aide Développeur</span></h3>
+        <p>Assiste dans le développement et les correctifs techniques.</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/le%20chat%20fumeur" alt="le chat fumeur">
+        <h3>le chat fumeur <span class="badge">Aide Développeur</span></h3>
+        <p>Apporte son soutien dans la configuration et les scripts RP.</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://mc-heads.net/avatar/matouchima" alt="matouchima">
+        <h3>matouchima <span class="badge">Grand Fondateur</span></h3>
+        <p>Créateur principal du projet HyperionRP.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Boutique -->
+  <section id="boutique" class="boutique">
+    <h2>🌟 Boutique HyperionRP</h2>
+    <div class="produits">
+      <div class="carte-produit">
+        <h3>Grade VIP</h3>
+        <p>Accès à des privilèges exclusifs, salon Discord privé, effets cosmiques.</p>
+        <span class="prix">4.99€</span>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Grade VIP', 4.99, false); return false;">Ajouter au panier</a>
+      </div>
+      <div class="carte-produit">
+        <h3>Kit de départ</h3>
+        <p>Tout ce qu’il faut pour bien commencer l’aventure RP !</p>
+        <span class="prix">2.50€</span>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Kit de départ', 2.50, false); return false;">Ajouter au panier</a>
+      </div>
+      <div class="carte-produit">
+        <h3>Achat d’argent virtuel</h3>
+        <p>Obtiens de la monnaie en jeu pour acheter des items exclusifs.</p>
+        <span class="prix">5.00€</span>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Achat d’argent virtuel', 5.00, false); return false;">Ajouter au panier</a>
+      </div>
+      <div class="carte-produit">
+        <h3>Don Libre</h3>
+        <p>Soutiens le serveur et la communauté !</p>
+        <span class="prix">Montant libre</span>
+        <a href="#" class="bouton-achat" onclick="ajouterAuPanier('Don Libre', 0, true); return false;">Ajouter au panier</a>
+      </div>
+    </div>
+    <p class="avertissement">⚠️ Avertissement : les dons libres ne sont pas remboursables.</p>
+  </section>
+
+  <!-- Section Statut du serveur -->
+  <section id="status" class="status-section">
+    <h2>🟢 Statut du Serveur</h2>
+    <p id="server-status">Chargement du statut...</p>
+  </section>
+
+  <!-- Section Recrutement -->
+  <section id="recrutement" class="recrutement">
+    <h2>📋 Recrutement Staff HyperionRP</h2>
+    <p>Remplis ce formulaire Google si tu souhaites rejoindre notre équipe !</p>
+
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSck46po1bWV6uiB4I4J8fyqy36n4W1wVD58dL1YIvkUDzQL6A/viewform?embedded=true"
+            width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">
+      Chargement…
+    </iframe>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 HyperionRP. Tous droits réservés.</p>
+  </footer>
+
+  <script>
+    // ==== Panier utilitaires ====
+    function getPanier() {
+      try { return JSON.parse(localStorage.getItem('panier') || '[]'); }
+      catch(e){ return []; }
+    }
+    function savePanier(p) {
+      localStorage.setItem('panier', JSON.stringify(p));
+      updateCartCount();
+    }
+    function updateCartCount() {
+      const p = getPanier();
+      const count = p.reduce((s, it) => s + (it.quantite || 1), 0);
+      const badge = document.getElementById('cart-count');
+      if (badge) badge.textContent = count;
+    }
+    document.addEventListener('DOMContentLoaded', updateCartCount);
+
+    function ajouterAuPanier(nom, prix, isDonLibre) {
+      let p = getPanier();
+      if (isDonLibre) {
+        let montant = prompt("Quel montant souhaitez-vous donner ? (en €)", "5");
+        if (!montant) return;
+        montant = parseFloat(montant.replace(',', '.'));
+        if (isNaN(montant) || montant <= 0) return;
+        prix = montant;
+        p.push({ nom, prix, quantite: 1, don: true });
+      } else {
+        const idx = p.findIndex(item => item.nom === nom && !item.don && Number(item.prix) === Number(prix));
+        if (idx !== -1) {
+          p[idx].quantite = (p[idx].quantite || 1) + 1;
+        } else {
+          p.push({ nom, prix, quantite: 1 });
+        }
+      }
+      savePanier(p);
+      return false;
+    }
+
+    // ==== Divers ====
+    function copyIP() {
+      navigator.clipboard.writeText("hyperionrp.aternos.me");
+      alert("IP copiée : hyperionrp.aternos.me");
+    }
+
+    // Statut serveur
+    async function fetchStatus() {
+      try {
+        const res = await fetch("https://api.mcsrvstat.us/2/hyperionrp.aternos.me");
+        const data = await res.json();
+        if (data.online) {
+          document.getElementById("server-status").innerText =
+            `✅ En ligne — ${data.players.online}/${data.players.max} joueurs connectés`;
+        } else {
+          document.getElementById("server-status").innerText = "❌ Serveur hors-ligne";
+        }
+      } catch (e) {
+        document.getElementById("server-status").innerText = "⚠️ Impossible de récupérer le statut";
+      }
+    }
+    fetchStatus();
+    setInterval(fetchStatus, 30000);
+  </script>
+</body>
 </html>
